@@ -17,9 +17,7 @@ def to_zero(text):
       return text 
      
 
-def process_indicator(indicator_name, input_foulder, output_foulder):
-
-  ## Look world first
+def process_world(indicator_name, input_foulder, output_foulder):
   json_land_temperature_change_absolute_changes = input_foulder+indicator_name+'/ISIMIP-projections/world/land-area-affected-by-'+indicator_name+'-absolute-changes_ISIMIP-projections_versus-temperature-change_world.json'
   json_land_timeslices_absolute_changes = input_foulder+indicator_name+'/ISIMIP-projections/world/land-area-affected-by-'+indicator_name+'-absolute-changes_ISIMIP-projections_versus-timeslices_world.json' 
   json_land_years_absolute_changes = input_foulder+indicator_name+'/ISIMIP-projections/world/land-area-affected-by-'+indicator_name+'-absolute-changes_ISIMIP-projections_versus-timeslices_world.json'
@@ -220,7 +218,7 @@ def process_indicator(indicator_name, input_foulder, output_foulder):
   world_rank_pop_rcp60_rel_far_future_high_or_low = 'high' 
   world_rank_pop_rel_2081_2100 = '(ranking-value: population-exposed-to-river-flood-relative-changes_ISIMIP-projections_versus-timeslices_world value: position time:2081-2100  scenario: rcp60)'
  
-  text = open('templates/'+indicator_name+'_world.md').read().format(
+  return dict(                 
                   indicator_short=indicator_short,land_indicator_capital=land_indicator_capital,land_indicator=land_indicator,
                   world_land_tc_ov_md_0c=world_land_tc_ov_md_0c,world_land_tc_rel_ov_md_1c=world_land_tc_rel_ov_md_1c,
                   world_land_rcp60_rel_far_future=world_land_rcp60_rel_far_future,
@@ -261,26 +259,10 @@ def process_indicator(indicator_name, input_foulder, output_foulder):
                   world_minimum_pop_tc_abs_ov_md_1c=world_minimum_pop_tc_abs_ov_md_1c,
                   world_minimum_pop_tc_abs_ov_md_2c=world_minimum_pop_tc_abs_ov_md_2c,world_maximum_pop_tc_abs_ov_md_2c=world_maximum_pop_tc_abs_ov_md_2c,                
                   world_maximum_pop_tc_abs_ov_md_1c=world_maximum_pop_tc_abs_ov_md_1c,
-          )      
-          
-          
-  output_foulder_local = output_foulder+indicator_short.replace(' ','-')+'/ISIMIP-projections/world'
-  if not os.path.exists(output_foulder_local):
-     os.makedirs(output_foulder_local)
-  
-  md_file = output_foulder_local+'/'+indicator_short.replace(' ','-')+'-world.md'
-  with open(md_file, 'w') as f:
-      f.write(text)
-      
- 
-  country_names= os.listdir (input_foulder+indicator_name+'/ISIMIP-projections')
-  # Going though all the countries in the list.
-  country_names= os.listdir (input_foulder+indicator_name+'/ISIMIP-projections')
-  for country_name in country_names:
-     if(country_name != 'oceans' and country_name != 'world'):
-      #if(country_name == 'AFG'):
-          print(indicator_name+ " - " +country_name)  
-          
+                )
+
+
+def process_country(indicator_name, country_name, input_foulder, output_foulder):
           # Land affected by INDICATOR
           json_land_temperature_change_absolute_changes = input_foulder+indicator_name+'/ISIMIP-projections/'+country_name+'/land-area-affected-by-'+indicator_name+'-absolute-changes_ISIMIP-projections_versus-temperature-change_'+country_name+'.json'
           json_land_timeslices_absolute_changes = input_foulder+indicator_name+'/ISIMIP-projections/'+country_name+'/land-area-affected-by-'+indicator_name+'-absolute-changes_ISIMIP-projections_versus-timeslices_'+country_name+'.json' 
@@ -477,11 +459,8 @@ def process_indicator(indicator_name, input_foulder, output_foulder):
  
           rank_pop_tc_rel_2c       = '(ranking-value: land-area-affected-by-river-flood-relative-changes_ISIMIP-projections_versus-temperature-change_'+country_name+' value: position temperature:2)'# Should show ranking with regards to relative change in population exposed under 2 degrees temperature change
           rank_pop_tc_rel_2081_2100= '(ranking-value: population-exposed-to-river-flood-relative-changes_ISIMIP-projections_versus-timeslices_'+country_name+' value: position time:2081-2100 scenario: rcp60)'
-          
-          # Writing the text. 
- 
-          if (country_name != 'world'): 
-           text = open('templates/'+indicator_name+'.md').read().format(
+
+          return dict(
                   indicator_short=indicator_short,country=country,country_name=country_name,land_indicator_capital=land_indicator_capital,
                   land_tc_ov_md_0c=land_tc_ov_md_0c,land_tc_rel_ov_md_1c=land_tc_rel_ov_md_1c,
                   land_rcp60_rel_far_future=land_rcp60_rel_far_future,land_substract_2_and_1=land_substract_2_and_1,
@@ -502,22 +481,20 @@ def process_indicator(indicator_name, input_foulder, output_foulder):
                   rank_land_tc_rel_2c=rank_land_tc_rel_2c,
                   rank_land_tc_rel_2081_2100=rank_land_tc_rel_2081_2100,
                   
-                  world_land_tc_rel_ov_md_2c_times=world_land_tc_rel_ov_md_2c_times,
-                  world_rank_land_rcp60_rel_far_future=world_rank_land_rcp60_rel_far_future,
-                  world_rank_land_rcp60_rel_far_future_high_or_low=world_rank_land_rcp60_rel_far_future_high_or_low,
-                  world_land_rcp60_rel_far_future_times=world_land_rcp60_rel_far_future_times,
-                  world_land_tc_ov_md_0c=world_land_tc_ov_md_0c,
-                  world_rank_land_tc_rel_2c=world_rank_land_tc_rel_2c,
-                  world_rank_land_tc_rel_2c_high_or_low=world_rank_land_tc_rel_2c_high_or_low,
-                  world_pop_tc_ov_md_0c=world_pop_tc_ov_md_0c,
-                  world_pop_tc_rel_ov_md_2c_times=world_pop_tc_rel_ov_md_2c_times,
-                  world_pop_rcp60_rel_far_future_times=world_pop_rcp60_rel_far_future_times,
-                  world_rank_pop_tc_rel_2c=world_rank_pop_tc_rel_2c,
-                  world_rank_pop_tc_rel_2c_high_or_low=world_rank_pop_tc_rel_2c_high_or_low,
-                  world_rank_pop_rcp60_rel_far_future=world_rank_pop_rcp60_rel_far_future,
-                  world_rank_pop_rcp60_rel_far_future_high_or_low=world_rank_pop_rcp60_rel_far_future_high_or_low, 
-                  
- 
+                  # world_land_tc_rel_ov_md_2c_times=world_land_tc_rel_ov_md_2c_times,
+                  # world_rank_land_rcp60_rel_far_future=world_rank_land_rcp60_rel_far_future,
+                  # world_rank_land_rcp60_rel_far_future_high_or_low=world_rank_land_rcp60_rel_far_future_high_or_low,
+                  # world_land_rcp60_rel_far_future_times=world_land_rcp60_rel_far_future_times,
+                  # world_land_tc_ov_md_0c=world_land_tc_ov_md_0c,
+                  # world_rank_land_tc_rel_2c=world_rank_land_tc_rel_2c,
+                  # world_rank_land_tc_rel_2c_high_or_low=world_rank_land_tc_rel_2c_high_or_low,
+                  # world_pop_tc_ov_md_0c=world_pop_tc_ov_md_0c,
+                  # world_pop_tc_rel_ov_md_2c_times=world_pop_tc_rel_ov_md_2c_times,
+                  # world_pop_rcp60_rel_far_future_times=world_pop_rcp60_rel_far_future_times,
+                  # world_rank_pop_tc_rel_2c=world_rank_pop_tc_rel_2c,
+                  # world_rank_pop_tc_rel_2c_high_or_low=world_rank_pop_tc_rel_2c_high_or_low,
+                  # world_rank_pop_rcp60_rel_far_future=world_rank_pop_rcp60_rel_far_future,
+                  # world_rank_pop_rcp60_rel_far_future_high_or_low=world_rank_pop_rcp60_rel_far_future_high_or_low,                 
                   climate_model_list=climate_model_list,impact_model_list=impact_model_list,country_apostrophe=country_apostrophe,
  
                   pop_tc_ov_md_0c=pop_tc_ov_md_0c,pop_tc_rel_ov_md_1c=pop_tc_rel_ov_md_1c,
@@ -536,8 +513,99 @@ def process_indicator(indicator_name, input_foulder, output_foulder):
                   minimum_pop_tc_abs_ov_md_2c=minimum_pop_tc_abs_ov_md_2c,maximum_pop_tc_abs_ov_md_2c=maximum_pop_tc_abs_ov_md_2c,
                   rank_pop_tc_rel_2c=rank_pop_tc_rel_2c,
                   rank_pop_tc_rel_2081_2100=rank_pop_tc_rel_2081_2100
+          )
+
+
+
+def process_indicator(indicator_name, input_foulder, output_foulder):
+
+  ## Look world first
+  world_results = process_world(indicator_name, input_foulder, output_foulder)
+
+  text = open('templates/'+indicator_name+'_world.md').read().format(**world_results)      
+          
+  indicator_short = world_results['indicator_short']
+  output_foulder_local = output_foulder+indicator_short.replace(' ','-')+'/ISIMIP-projections/world'
+  if not os.path.exists(output_foulder_local):
+     os.makedirs(output_foulder_local)
+  
+  md_file = output_foulder_local+'/'+indicator_short.replace(' ','-')+'-world.md'
+  with open(md_file, 'w') as f:
+      f.write(text)
+      
  
-                  )          
+  country_names= os.listdir (input_foulder+indicator_name+'/ISIMIP-projections')
+  # Going though all the countries in the list.
+  country_names= os.listdir (input_foulder+indicator_name+'/ISIMIP-projections')
+  for country_name in country_names:
+     if(country_name != 'oceans' and country_name != 'world'):
+      #if(country_name == 'AFG'):
+          print(indicator_name+ " - " +country_name)  
+          
+          country_results = process_country(indicator_name, country_name, input_foulder, output_foulder)
+
+          fmt_data = world_results.copy()
+          fmt_data.update(country_results)
+          # Writing the text. 
+ 
+          if (country_name != 'world'): 
+           text = open('templates/'+indicator_name+'.md').read().format(**fmt_data)
+                  # indicator_short=indicator_short,country=country,country_name=country_name,land_indicator_capital=land_indicator_capital,
+                  # land_tc_ov_md_0c=land_tc_ov_md_0c,land_tc_rel_ov_md_1c=land_tc_rel_ov_md_1c,
+                  # land_rcp60_rel_far_future=land_rcp60_rel_far_future,land_substract_2_and_1=land_substract_2_and_1,
+                  # land_tc_ov_md_1c=land_tc_ov_md_1c,     
+                  # land_tc_ov_md_2c=land_tc_ov_md_2c,land_tc_rel_ov_md_2c=land_tc_rel_ov_md_2c,land_indicator_raw=land_indicator_raw,
+                  # land_pc_abs_far_future=land_pc_abs_far_future,land_indicator=land_indicator,land_tc_abs_ov_md_2c=land_tc_abs_ov_md_2c,
+                  # land_pc_rel_far_future=land_pc_rel_far_future,land_tc_abs_ov_md_0c=land_tc_abs_ov_md_0c,
+                  # land_tc_ov_md_1c_times = land_tc_ov_md_1c_times,
+                  # land_rcp26_far_future=land_rcp26_far_future,land_rcp60_far_future=land_rcp60_far_future,
+                  # land_rcp60_far_future_times=land_rcp60_far_future_times,
+                  # land_tc_rel_ov_md_1c_times_higher_or_lower=land_tc_rel_ov_md_1c_times_higher_or_lower,
+                  # land_tc_rel_ov_md_1c_times=land_tc_rel_ov_md_1c_times,
+                  # minimum_land_tc_abs_ov_md_1c=minimum_land_tc_abs_ov_md_1c,maximum_land_tc_abs_ov_md_1c=maximum_land_tc_abs_ov_md_1c,
+                  # minimum_land_tc_abs_ov_md_2c=minimum_land_tc_abs_ov_md_2c,maximum_land_tc_abs_ov_md_2c=maximum_land_tc_abs_ov_md_2c,
+                  # land_tc_rel_ov_md_2c_times=land_tc_rel_ov_md_2c_times,land_rcp60_rel_far_future_times=land_rcp60_rel_far_future_times,
+                  # land_rcp60_abs_far_future=land_rcp60_abs_far_future,land_rcp26_rel_far_future_times=land_rcp26_rel_far_future_times,
+                  # land_rcp26_abs_far_future=land_rcp26_abs_far_future, 
+                  # rank_land_tc_rel_2c=rank_land_tc_rel_2c,
+                  # rank_land_tc_rel_2081_2100=rank_land_tc_rel_2081_2100,
+                  
+                  # world_land_tc_rel_ov_md_2c_times=world_land_tc_rel_ov_md_2c_times,
+                  # world_rank_land_rcp60_rel_far_future=world_rank_land_rcp60_rel_far_future,
+                  # world_rank_land_rcp60_rel_far_future_high_or_low=world_rank_land_rcp60_rel_far_future_high_or_low,
+                  # world_land_rcp60_rel_far_future_times=world_land_rcp60_rel_far_future_times,
+                  # world_land_tc_ov_md_0c=world_land_tc_ov_md_0c,
+                  # world_rank_land_tc_rel_2c=world_rank_land_tc_rel_2c,
+                  # world_rank_land_tc_rel_2c_high_or_low=world_rank_land_tc_rel_2c_high_or_low,
+                  # world_pop_tc_ov_md_0c=world_pop_tc_ov_md_0c,
+                  # world_pop_tc_rel_ov_md_2c_times=world_pop_tc_rel_ov_md_2c_times,
+                  # world_pop_rcp60_rel_far_future_times=world_pop_rcp60_rel_far_future_times,
+                  # world_rank_pop_tc_rel_2c=world_rank_pop_tc_rel_2c,
+                  # world_rank_pop_tc_rel_2c_high_or_low=world_rank_pop_tc_rel_2c_high_or_low,
+                  # world_rank_pop_rcp60_rel_far_future=world_rank_pop_rcp60_rel_far_future,
+                  # world_rank_pop_rcp60_rel_far_future_high_or_low=world_rank_pop_rcp60_rel_far_future_high_or_low, 
+                  
+ 
+                  # climate_model_list=climate_model_list,impact_model_list=impact_model_list,country_apostrophe=country_apostrophe,
+ 
+                  # pop_tc_ov_md_0c=pop_tc_ov_md_0c,pop_tc_rel_ov_md_1c=pop_tc_rel_ov_md_1c,
+                  # pop_rcp60_rel_far_future=pop_rcp60_rel_far_future,pop_substract_2_and_1=pop_substract_2_and_1,
+                  # pop_tc_ov_md_1c=pop_tc_ov_md_1c,pop_rcp26_far_future=pop_rcp26_far_future,pop_rcp60_far_future=pop_rcp60_far_future,          
+                  # pop_tc_ov_md_2c=pop_tc_ov_md_2c,pop_tc_rel_ov_md_2c=pop_tc_rel_ov_md_2c,pop_tc_abs_ov_md_2c=pop_tc_abs_ov_md_2c,
+                  # pop_pc_abs_far_future=pop_pc_abs_far_future,pop_indicator=pop_indicator,pop_indicator_capital=pop_indicator_capital,
+                  # pop_pc_rel_far_future=pop_pc_rel_far_future,pop_indicator_raw=pop_indicator_raw,          
+                  # pop_rcp60_rel_far_future_times=pop_rcp60_rel_far_future_times,pop_rcp60_abs_far_future=pop_rcp60_abs_far_future,
+                  # pop_rcp26_rel_far_future_times=pop_rcp26_rel_far_future_times,pop_rcp26_abs_far_future=pop_rcp26_abs_far_future,
+                  # pop_rcp60_far_future_times=pop_rcp60_far_future_times,
+                  # pop_tc_rel_ov_md_1c_times=pop_tc_rel_ov_md_1c_times,
+                  # pop_tc_rel_ov_md_1c_times_higher_or_lower=pop_tc_rel_ov_md_1c_times_higher_or_lower,
+                  # pop_tc_rel_ov_md_2c_times=pop_tc_rel_ov_md_2c_times,
+                  # minimum_pop_tc_abs_ov_md_1c=minimum_pop_tc_abs_ov_md_1c,maximum_pop_tc_abs_ov_md_1c=maximum_pop_tc_abs_ov_md_1c,
+                  # minimum_pop_tc_abs_ov_md_2c=minimum_pop_tc_abs_ov_md_2c,maximum_pop_tc_abs_ov_md_2c=maximum_pop_tc_abs_ov_md_2c,
+                  # rank_pop_tc_rel_2c=rank_pop_tc_rel_2c,
+                  # rank_pop_tc_rel_2081_2100=rank_pop_tc_rel_2081_2100
+ 
+                  # )          
                   
            output_foulder_local = output_foulder+indicator_short.replace(' ','-')+'/ISIMIP-projections/'+country_name
            if not os.path.exists(output_foulder_local):
