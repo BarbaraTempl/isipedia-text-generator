@@ -551,15 +551,20 @@ def process_indicator(indicator_name, input_foulder, output_foulder):
 
 def main():
 
-  input_foulder = 'test-data/'
-  output_foulder = 'test-data/'
+  import argparse
 
-  # Get the folder names, i.e the indicator names. 
-  indicator_names= os.listdir (input_foulder)
+  parser = argparse.ArgumentParser()
+  parser.add_argument('--indicators', nargs='*', help='scan all indicators by default')
+  parser.add_argument('--input-folder', default='test-data', help='%(defaults)s')
+  parser.add_argument('--output-folder', default='test-data', help='%(defaults)s')
 
-  for indicator_name in indicator_names:
-    process_indicator(indicator_name, input_foulder, output_foulder)
+  o = parser.parse_args()
 
+  if not o.indicators:
+    o.indicators = os.listdir (o.input_folder)  
+
+  for indicator_name in o.indicators:
+    process_indicator(indicator_name, o.input_folder+'/', o.output_folder+'/')
 
 
 if __name__ == '__main__':
