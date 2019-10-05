@@ -25,8 +25,6 @@ output_foulder = 'test-data/'
 indicator_names= os.listdir (input_foulder)
 
 for indicator_name in indicator_names:
-# if(indicator_name=='crop-failure' or indicator_name=='river-flood' or indicator_name=='tropical-cyclone' or indicator_name=='wildfire'):
- if(indicator_name=='drought'):
     
     ## Look world first
            # Land affected by INDICATOR
@@ -230,7 +228,7 @@ for indicator_name in indicator_names:
            world_rank_pop_rcp60_rel_far_future_high_or_low = 'high' 
            world_rank_pop_rel_2081_2100 = '(ranking-value: population-exposed-to-river-flood-relative-changes_ISIMIP-projections_versus-timeslices_world value: position time:2081-2100  scenario: rcp60)'
     
-           text = open('templates/drought_world.md').read().format(
+           text = open('templates/'+indicator_name+'_world.md').read().format(
                            indicator_short=indicator_short,land_indicator_capital=land_indicator_capital,land_indicator=land_indicator,
                            world_land_tc_ov_md_0c=world_land_tc_ov_md_0c,world_land_tc_rel_ov_md_1c=world_land_tc_rel_ov_md_1c,
                            world_land_rcp60_rel_far_future=world_land_rcp60_rel_far_future,
@@ -491,7 +489,7 @@ for indicator_name in indicator_names:
                    # Writing the text. 
 
                    if (country_name != 'world'): 
-                    text = open('templates/drought.md').read().format(
+                    text = open('templates/'+indicator_name+'.md').read().format(
                            indicator_short=indicator_short,country=country,country_name=country_name,land_indicator_capital=land_indicator_capital,
                            land_tc_ov_md_0c=land_tc_ov_md_0c,land_tc_rel_ov_md_1c=land_tc_rel_ov_md_1c,
                            land_rcp60_rel_far_future=land_rcp60_rel_far_future,land_substract_2_and_1=land_substract_2_and_1,
