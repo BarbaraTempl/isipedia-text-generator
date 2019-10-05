@@ -1,17 +1,6 @@
-# NEW FILES
+"""Generate Text for ISIPedia Project
 
-
-"""
-To: Generate Text for ISIPedia Project
-By: Julian Hunt (IIASA)
-On: 2018/04
-
-The one which we are going to write newly should be more simple.
-This old one contains 1) country data extraction, 2) mapping, and 3) plotting as well, which other ISIpedia colleagues are in charge of. Previously, we thought we would do it too, but they are not our tasks any more. We can focus on text parts.
-What we will do for a new text generator(s?) are;
-Change IO part to handle json input files and markdown output files
-Upgrade lines after l.376 of this old script
-
+Initially created Julian Hunt (IIASA) on 2018/04
 """
 
 import json
@@ -29,11 +18,8 @@ def to_zero(text):
       return text 
      
 
-input_foulder = '/home/julian/ISIPedia_DKRZ_Server/data_cube/'
-output_foulder = '/home/julian/ISIPedia_DKRZ_Server/data_cube/'
-
-#input_foulder = '/home/julian/Documents/My ASUS (antigo)/IIASA/Water Group/ISIpedia/data_cube/'
-#output_foulder = '/home/julian/Documents/My ASUS (antigo)/IIASA/Water Group/ISIpedia/data_cube/'
+input_foulder = 'test-data/'
+output_foulder = 'test-data/'
 
 # Get the folder names, i.e the indicator names. 
 indicator_names= os.listdir (input_foulder)
@@ -311,7 +297,7 @@ for indicator_name in indicator_names:
                
 
                
-           countries_rank = pd.read_excel('/home/julian/Documents/My ASUS (antigo)/IIASA/Water Group/ISIpedia/Github/ISIPedia/Countries Names.xls')# Creating a rank for [‘overall‘][‘median_relative_changes’][6]
+           # countries_rank = pd.read_excel('/home/julian/Documents/My ASUS (antigo)/IIASA/Water Group/ISIpedia/Github/ISIPedia/Countries Names.xls')# Creating a rank for [‘overall‘][‘median_relative_changes’][6]
            country_names= os.listdir (input_foulder+indicator_name+'/ISIMIP-projections')
            # Going though all the countries in the list.
            country_names= os.listdir (input_foulder+indicator_name+'/ISIMIP-projections')
