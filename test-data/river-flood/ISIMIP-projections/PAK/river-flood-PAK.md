@@ -9,13 +9,19 @@ It is important to note that our (link: glossary/future-projections text: future
 In the key messages we report the results for the (link: glossary/median text: median) of the (link: glossary/model-ensemble text: model ensemble) of global hydrological models providing data to ISIMIP. The median represents the middle of the ensemble, meaning that 50% of the ensemble members provide higher numbers and 50% provide lower numbers. After the key message, which only references the median, you can find the model-specific results in the figures, a discussion of the methodology and the restrictions of the analysis at the end of the article.
 
 ### Key messages
+
 * Without human-made greenhouse gas emissions, 0.071% of Pakistan’s land area and 0.147% of Pakistan’s population would be affected by river flood each year, on average.
+
 * At today’s levels of 1 degrees Celsius of global warming the land area affected is 1.212 times as much: 21.177% of the total land area, while the number of people affected is 1.218 times as much: 0.336% of the total population.
+
 * At 2 degrees Celsius of global warming, Pakistan’s land area affected by river floods is projected to increase by a factor of 9.212 compared to a world without human-made greenhouse gas emissions, to 0.071%. Likewise, Pakistan’s population exposed to river floods is projected to increase by a factor -12.871, to 0.147%.
+
 * Following the higher-emissions scenario (RCP6.0) which can entail over 3 degrees Celsius of global warming by the end of the century (2081-2100), this factor is projected to reach 1.001 for the land area affected to river flood (to 1.001%) and 1.002 for the population exposed to river floods (to 0.229%).
+
 * Pakistan ranks (ranking-value: land-area-affected-by-river-flood-relative-changes_ISIMIP-projections_versus-temperature-change_PAK value: position temperature:2) with regards to its relative change in land area affected by river floods at 2 degrees Celsius of global warming in comparison to a situation without anthropogenic climate change. For the relative change in population exposed to river floods, Pakistan’s ranking is (ranking-value: land-area-affected-by-river-flood-relative-changes_ISIMIP-projections_versus-temperature-change_PAK value: position temperature:2).
 
 ### Results
+
 The figures below shows the relative change in Pakistan’s land area affected by and population exposed to river floods in comparison to the time period before anthropogenic climate change. Results are shown both for the (link: glossary/historical-period text: historical time period) and for the (link: glossary/future-projections text: future projections) and can be visualized with regards to their change over time as well as with regards to their change in terms of global warming. Under the ‘change in terms of time’ setting, the change in land area affected by and population exposed to river floods over time is shown for 20-year (link: glossary/time-slices text: time-slices) from 1861-1880 until the end-of-the-century (2081-2100). Under the ‘change in terms of global warming’, the change in land area affected by and population exposed to river floods is shown for 20-year (link: glossary/time-slices text time-slices) representing increasing levels of global warming from 0 degrees Celsius up to 3 degrees Celsius compared to the time period before anthropogenic climate change started.
 
 In both cases, results are shown for all possible combinations of (link: glossary/global-hydrological-models text: global hydrological models) and (link: glossary/global-climate-models text: global climate models) (normal lines) as well as for the median of the model ensemble (thick line). The influence of (link: glossary/inter-annual-variability text: inter-annual variability) on the results is visualized by means of the shaded area in black. This inter-annual variability is only shown for the median model combination. For the future projections and under the ‘change in terms of time’ settings only, an additional distinction is made between the results of two future (link: glossary/emissions-trajectories text: emissions trajectories): a low-emissions trajectory limiting global mean temperature in the 21st century to below 2 degrees Celsius compared to before anthropogenic climate change started, called RCP2.6 (blue lines), and a higher-emissions scenario leading global mean temperature to above 3 degrees Celsius by 2100, compared to pre-climate change conditions, called RCP6.0 (red lines). The shaded areas in blue and red indicate the variety (or spread) in results between all combinations of global hydrological models and global climate models for these two emissions trajectories. A filtering menu top-right of the graph allows the user to select individual emissions trajectories, individual global climate models, and individual global hydrological models for visualization.
@@ -24,7 +30,7 @@ By hovering over or clicking on a particular value in the figure additional deta
 
 #### Land area affected by river floods
 
-(line-plot: land-area-affected-by-river-flood-relative-changes_ISIMIP-projections_versus-temperature-change_PAK,land-area-affected-by-river-flood-relative-changes_ISIMIP-projections_versus-timeslices_PAK first-temperature: 2 second-scenario: rcp26 second-time: 2041-2060)
+(line-plot: land-area-affected-by-drought-relative-changes_ISIMIP-projections_versus-temperature-change_PAK,land-area-affected-by-drought-relative-changes_ISIMIP-projections_versus-timeslices_PAK first-temperature: 2 second-scenario: rcp26 second-time: 2141-2160)
 
 Without human-made greenhouse gas emissions, 0.071% of Pakistan’s land area would be affected by river flood each year, on average.
 
@@ -38,7 +44,7 @@ As such, Pakistan ranks (ranking-value: land-area-affected-by-river-flood-relati
 
 #### Population exposed to river floods
 
-(line-plot: population-exposed-to-river-flood-relative-changes_ISIMIP-projections_versus-temperature-change_PAK,population-exposed-to-river-flood-relative-changes_ISIMIP-projections_versus-timeslices_PAK first-temperature: 2 second-scenario: rcp26 second-time: 2041-2060)
+(line-plot: population-exposed-to-drought-relative-changes_ISIMIP-projections_versus-temperature-change_PAK,population-exposed-to-drought-relative-changes_ISIMIP-projections_versus-timeslices_PAK first-temperature: 2 second-scenario: rcp26 second-time: 2141-2160)
 
 Without human-made greenhouse gas emissions, 0.147% of Pakistan’s population would be exposed to river flood each year, on average.
 
@@ -53,37 +59,49 @@ As such, Pakistan ranks (ranking-value: land-area-affected-by-river-flood-relati
 ### Methodology
 
 #### What do we analyze?
+
 We analyze the land area affected by river floods and the number of people exposed to river flood at different levels of global warming (0, 1, 2, and 3 degrees Celsius) and during different time periods. We cover the time before anthropogenic climate change started (1850), present-day (2001-2020), mid-century (2041-2060) and end-of-century (2081-2100). We compare the later periods against the climate conditions before anthropogenic climate change (1850).
 
 #### How do we calculate where and when a flood occurs?
+
 The calculation has several steps: 1) calculate (link: glossary/runoff text: runoff); 2) calculate daily river flow and its (link: glossary/annual-maximum text: annual maximum); 3) compare this annual maximum with the 100-year (link: glossary/return-level text: return level) which is calculated separately when the 100-year return level is exceeded, 4) calculate (link: glossary/flood-depth text: flood depth); and 5) calculate flooded land area fraction. All these steps are detailed below, after a short explanation of the spatial structure on which our models operate.
 
 #### What is the spatial structure of the models?
+
 The models we use cover the whole globe’s land area. The land area is divided into a grid. Each grid cell has a size of 0.5 degrees × 0.5 degrees (latitude by longitude). At the equator, this equals roughly 55 × 55 km; towards the North Pole or South Pole, where the land area covered per grid cell becomes smaller.
 
 #### How is runoff calculated?
+
 The calculation is done for each grid cell and each day. Information about temperature, precipitation, solar radiation, and other weather indicators is taken from the global climate models (GCMs) and used as input for the ISIMIP global hydrological models (GHMs). Additional spatial data, such as soil, land cover and water bodies are also inputted. Runoff is calculated as the difference between the amount of water coming in as rain or snow, and the amount of water going out, either through evapotranspiration from the surface and vegetation, or by seeping vertically into the ground. Runoff percolates horizontally through the ground (subsurface runoff) or flows on the surface (surface runoff) into the surface water bodies or river. The model calculates runoff as daily value for each grid cell.
 
 #### How is river flow calculated?
+
 Having calculated runoff in each grid cell, we use the global river model (link: glossary/camaflood text: CaMaFlood) to calculate the water flow once it is in the river. The river water flow is also known as discharge, and measured in cubic meters per second (m³/s). For each grid cell along the river, the amount of water flowing through the river is calculated by summing up the runoff coming from all grid cells located upstream. For each grid cell, we then calculate the annual maximum of the daily river flow values.
 
 #### How do we know whether a flood occurs?
+
 In our analysis, we assume that a flood occurs whenever the annual maximum daily river flow exceeds the so-called 100-year return level. This is the water flow that was exceeded only once every 100 years, on average, before anthropogenic climate change started. We only consider river flows larger than the 100-year return level, because we assume that for smaller flows, either no flooding occurs (e.g. protection measures such as levees prevent them) or the floods have minor impacts (e.g. people do not settle in these areas or the flood depth is very shallow). That is, we assume that societies have already adapted to more frequent events.
 
 #### How do we know how often floods occurred before anthropogenic climate change started?
+
 We use a separate model simulation in which the climate behaves as if there had been no human-made greenhouse gas emissions. This simulation runs for several centuries without any outside change, just letting the weather evolve naturally. We then calculate the maximum river flow level that occurs, on average, every 100 years in this simulation.
 
 #### How is flood depth calculated?
+
 Once there is a flood in a given grid cell and year, we obtain the flood depth from a calculation based on the unique relationship of flood depth with return level. This relationship between return level and flood depth is based on (link: glossary/calibrated-simulations text: calibrated simulations) from the global hydrological model (link: glossary/matsiro text: MATSIRO) in combination with CaMaFlood.
 
 #### How is the flooded land area fraction calculated?
+
 For each flood-affected grid cell, the flood-water volume is calculated from the flood depth and the size of the cell. This volume of water is then distributed onto a high-resolution elevation map (~100m x 100m at the equator). This map is part of CaMaFlood. The elevation map acts as a basin, with each point in the map assigned a height above sea-level.
+
 The portion of each 0.5 degree x 0.5 degree grid cell that is submerged is calculated. For example, if it is a mountainous area, all the flood water will concentrate in the narrow valleys, while the mountain peaks do not get flooded. Thus, only a part of the 0.5 degree x 0.5 degree grid cell will be submerged even during a large flood. On the contrary, if the area is very flat, then the flood water will spread out and potentially submerge the entire grid cell.
 
 #### How are the indicators land area affected by river floods and number of people exposed to river flood calculated?
+
 To calculate the land area affected by flooding for Pakistan, the flooded land area fractions are added up across all 0.5 degree x 0.5 degree grid cells belonging to Pakistan. To calculate the number of people exposed to flooding, we first multiply the flooded land area fraction of each grid cell by the number of people living in that grid cell to estimate the number of people exposed to river flood, and then add up those numbers across all grid cells belonging to Pakistan.
 
 #### What else should I know about the methodology?
+
 We assume that the number of people living in an area, as well as the area’s land use and land cover (what fractions of the area are used for settlement, cropland, or pasture, or covered by forest), remain constant at the levels of year 2005 throughout the whole simulation. This is not meant to be realistic, but to isolate the influence of climate change from the influence of other changes.
 
 In the key messages we report the results for the median (the model in the middle) of the group of global hydrological models that ran simulations in (link: glossary/isimip2b text: ISIMIP2b). All model-specific results are presented in the figures and a discussion of the limitations of the analysis is included at the end of the report.
@@ -91,6 +109,7 @@ In the key messages we report the results for the median (the model in the middl
 A ranking of countries for each indicator is also provided to compare countries on the basis of their relative change in land area affected or number of people exposed under different levels of global warming and for various time horizons, compared to conditions without climate change. A ranking of 1 implies that the country experiences a change in the indicator higher than all other ranked countries, for example the strongest impacts from climate change; whereas a lower ranking entails comparatively less impacts.
 
 ### Discussion
+
 The model simulations used for this report build on science that has been established through many peer-reviewed studies: e.g. by [Yamazaki et al. (2011)](https://doi.org/10.1029/2010WR009726),[Müller Schmied et al. (2016)](https://doi.org/10.5194/hess-20-2877-2016). Models are simplified representations of reality, hence model simulations come with limitations and uncertainties that have to be kept in mind. One major limitation of the global water models is the availability of global data sets that are needed to fully represent the global hydrological cycle. For example, many of the models do not consider glaciers which could influence river flood as well. Furthermore, the representation of the components of the hydrological cycle, such as soil hydrology, differ strongly between models (e.g. in terms of detail, but also the calculation approach) with large effects on runoff generation. Another major source of uncertainty are the climatic input data as they stem from climate models that have a coarser spatial resolution and their own (link: glossary/modelling-uncertainties text: modelling uncertainties). In particular, the adequate simulation of precipitation extremes is difficult for global climate models.
 
 The performance of the global water models themselves can be tested by using (link: glossary/observed-historical-weather-information text: observed historical weather information) as inputs, and comparing the simulated river flow to river flow observed at different stations along rivers. One general challenge associated with the simulation of hydrological processes lies in the representation of how vegetation cover affects evapotranspiration and other surface properties that play a role in flood onset. Moreover, this relationship may change within a given river basin, or with rising temperature and CO2 levels. For example, the effect of CO2 fertilization – the phenomenon through which photosynthesis, hence plant growth, should be enhanced in a CO2-richer atmosphere – is not represented in most water models although it would affect the plants’ water use, with consequences for runoff and river flow. Nevertheless, although these vegetation-related processes are critical for the projection of drought conditions and low-flow events, they are of less importance for projections of river flood. A close relationship indeed exists between precipitation and peak discharge during flood events, which is only moderately affected by evapotranspiration.
