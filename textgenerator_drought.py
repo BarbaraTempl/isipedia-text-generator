@@ -111,20 +111,7 @@ for indicator_name in indicator_names:
            indicator_short        = data_land_years['indicator'].replace('-',' ')#land_indicator.replace('land area affected by ','') 
 
            climate_model_list     = len(data_land_years['climate_model_list'])
-           if climate_model_list == 1:
-              climate_model_list_text = str(climate_model_list)
-              climate_model_with_or_without_s = ''
-           else:
-              climate_model_list_text = str(climate_model_list)+' different'               
-              climate_model_with_or_without_s = 's'
-              
-           impact_model_list      = len(data_land_years['impact_model_list'])    
-           if impact_model_list == 1:
-              impact_model_list_text = str(impact_model_list)
-              impact_model_with_or_without_s = ''
-           else:
-              impact_model_list_text = str(impact_model_list)+' different'               
-              impact_model_with_or_without_s = 's'                
+           impact_model_list      = len(data_land_years['impact_model_list'])                      
            
            world_land_tc_abs_ov_md_0c   = round(to_zero(data_land_temperature_change_absolute_changes['data']['overall']['median'][0]),3) 
            world_land_tc_abs_ov_md_1c   = round(to_zero(data_land_temperature_change_absolute_changes['data']['overall']['median'][2]),3) 
@@ -178,10 +165,11 @@ for indicator_name in indicator_names:
            world_land_rcp60_rel_far_future_times = round((to_zero(data_land_timeslices_relative_changes['data']['rcp60']['overall']['median'][21])/100+1),3)
            world_land_rcp26_rel_far_future_times = round((to_zero(data_land_timeslices_relative_changes['data']['rcp26']['overall']['median'][21])/100+1),3)
 
-           #world_rank_land_tc_rel_2c        = '(ranking-value: land-area-affected-by-river-flood-relative-changes_ISIMIP-projections_world value: position)' #Should show ranking with regards to relative change in land area affected under 2 degrees temperature change
-           #world_rank_land_tc_rel_2c_high_or_low = 'high'#Can we make this flexible to the outcome: e.g. if the ranking is  <100 it is ‘high’, if the ranking is >100 it is ‘low’. Probably CDLX should provide this information. Or we need to calculate the rankings ourselves.
-           #world_rank_land_rcp60_rel_far_future  = '(ranking-value: land-area-affected-by-river-flood-relative-changes_ISIMIP-projections_world value: position)'
-           #world_rank_land_rcp60_rel_far_future_high_or_low = 'high' 
+           world_rank_land_tc_rel_2c        = '(ranking-value: land-area-affected-by-river-flood-relative-changes_ISIMIP-projections_versus-temperature-change_world value: position temperature:2)' #Should show ranking with regards to relative change in land area affected under 2 degrees temperature change
+           world_rank_land_tc_rel_2c_high_or_low = 'high'#Can we make this flexible to the outcome: e.g. if the ranking is  <100 it is ‘high’, if the ranking is >100 it is ‘low’. Probably CDLX should provide this information. Or we need to calculate the rankings ourselves.
+
+           world_rank_land_rcp60_rel_far_future  = '(ranking-value: land-area-affected-by-river-flood-relative-changes_ISIMIP-projections_versus-timeslices_world value: position time:2081-2100  scenario: rcp60)'
+           world_rank_land_rcp60_rel_far_future_high_or_low = 'high' 
 
            # Population exposed to INDICATOR
            pop_indicator_raw         = data_pop_years['variable'] 
@@ -236,11 +224,11 @@ for indicator_name in indicator_names:
            world_pop_rcp60_far_future_times = round((to_zero(data_pop_timeslices['data']['rcp60']['overall']['median'][21])/100+1),3)
            world_pop_rcp60_rel_far_future_times = round((to_zero(data_pop_timeslices_relative_changes['data']['rcp60']['overall']['median'][21])/100+1),3)
 
-           #world_rank_pop_tc_rel_2c       = '(ranking-value: population-exposed-to-river-flood-relative-changes_ISIMIP-projections_versus-temperature-change_'+data_land_years['region']+' value: position temperature:2)'# Should show ranking with regards to relative change in population exposed under 2 degrees temperature change
-           #world_rank_pop_tc_rel_2c_high_or_low = 'high'#Can we make this flexible to the outcome: e.g. if the ranking is  <100 it is ‘high’, if the ranking is >100 it is ‘low’. Probably CDLX should provide this information. Or we need to calculate the rankings ourselves.
-           #world_rank_pop_rcp60_rel_far_future  = '(ranking-value: population-exposed-to-river-flood-relative-changes_ISIMIP-projections_world value: position)'
-           #world_rank_pop_rcp60_rel_far_future_high_or_low = 'high' 
-           #world_rank_pop_rel_2081_2100 = '(ranking-value: population-exposed-to-river-flood-relative-changes_ISIMIP-projections_versus-timeslices_world value: position time:2081-2100)'
+           world_rank_pop_tc_rel_2c       = '(ranking-value: population-exposed-to-river-flood-relative-changes_ISIMIP-projections_versus-temperature-change_'+data_land_years['region']+' value: position temperature:2)'# Should show ranking with regards to relative change in population exposed under 2 degrees temperature change
+           world_rank_pop_tc_rel_2c_high_or_low = 'high'#Can we make this flexible to the outcome: e.g. if the ranking is  <100 it is ‘high’, if the ranking is >100 it is ‘low’. Probably CDLX should provide this information. Or we need to calculate the rankings ourselves.
+           world_rank_pop_rcp60_rel_far_future  = '(ranking-value: population-exposed-to-river-flood-relative-changes_ISIMIP-projections_versus-timeslices_world value: position time:2081-2100  scenario: rcp60)'
+           world_rank_pop_rcp60_rel_far_future_high_or_low = 'high' 
+           world_rank_pop_rel_2081_2100 = '(ranking-value: population-exposed-to-river-flood-relative-changes_ISIMIP-projections_versus-timeslices_world value: position time:2081-2100  scenario: rcp60)'
     
            text = open('templates/drought_world.md').read().format(
                            indicator_short=indicator_short,land_indicator_capital=land_indicator_capital,land_indicator=land_indicator,
@@ -264,9 +252,8 @@ for indicator_name in indicator_names:
                            world_land_rcp26_rel_far_future_times=world_land_rcp26_rel_far_future_times,
                            world_maximum_land_tc_abs_ov_md_2c=world_maximum_land_tc_abs_ov_md_2c,
                            
-                           climate_model_list_text=climate_model_list_text,climate_model_with_or_without_s=climate_model_with_or_without_s, 
-                           impact_model_list_text=impact_model_list_text,impact_model_with_or_without_s=impact_model_with_or_without_s,
-                           
+                           world_rank_pop_rel_2081_2100=world_rank_pop_rel_2081_2100,                  
+        
                            climate_model_list=climate_model_list,impact_model_list=impact_model_list,country_apostrophe=country_apostrophe,
         
                            world_pop_tc_ov_md_0c=world_pop_tc_ov_md_0c,world_pop_tc_rel_ov_md_1c=world_pop_tc_rel_ov_md_1c,
@@ -296,14 +283,12 @@ for indicator_name in indicator_names:
                f.write(text)
                
 
-               
-           # countries_rank = pd.read_excel('/home/julian/Documents/My ASUS (antigo)/IIASA/Water Group/ISIpedia/Github/ISIPedia/Countries Names.xls')# Creating a rank for [‘overall‘][‘median_relative_changes’][6]
            country_names= os.listdir (input_foulder+indicator_name+'/ISIMIP-projections')
            # Going though all the countries in the list.
            country_names= os.listdir (input_foulder+indicator_name+'/ISIMIP-projections')
            for country_name in country_names:
               if(country_name != 'oceans' and country_name != 'world'):
-               #if(country_name == '{country_name}'):
+               #if(country_name == 'AFG'):
                    print(indicator_name+ " - " +country_name)  
                    
                    # Land affected by INDICATOR
@@ -388,20 +373,7 @@ for indicator_name in indicator_names:
                    indicator_short        = data_land_years['indicator'].replace('-',' ')#land_indicator.replace('land area affected by ','') 
         
                    climate_model_list     = len(data_land_years['climate_model_list'])
-                   if climate_model_list == 1:
-                      climate_model_list_text = str(climate_model_list)
-                      climate_model_with_or_without_s = ''
-                   else:
-                      climate_model_list_text = str(climate_model_list)+' different'               
-                      climate_model_with_or_without_s = 's'
-              
-                   impact_model_list      = len(data_land_years['impact_model_list'])    
-                   if impact_model_list == 1:
-                      impact_model_list_text = str(impact_model_list)
-                      impact_model_with_or_without_s = ''
-                   else:
-                      impact_model_list_text = str(impact_model_list)+' different'               
-                      impact_model_with_or_without_s = 's'                  
+                   impact_model_list      = len(data_land_years['impact_model_list'])                      
                    
                    land_tc_abs_ov_md_0c   = round(to_zero(data_land_temperature_change_absolute_changes['data']['overall']['median'][0]),3) 
                    land_tc_abs_ov_md_1c   = round(to_zero(data_land_temperature_change_absolute_changes['data']['overall']['median'][2]),3) 
@@ -454,9 +426,9 @@ for indicator_name in indicator_names:
                    land_rcp26_far_future_times = round((to_zero(data_land_timeslices['data']['rcp26']['overall']['median'][21])/100+1),3)
                    land_rcp60_rel_far_future_times = round(to_zero(data_land_timeslices_relative_changes['data']['rcp60']['overall']['median'][21])/100+1,3)
                    land_rcp26_rel_far_future_times = round(to_zero(data_land_timeslices_relative_changes['data']['rcp26']['overall']['median'][21])/100+1,3)
-                
-                   #rank_land_tc_rel_2c        = '(ranking-value: land-area-affected-by-river-flood-relative-changes_ISIMIP-projections_'+country_name+' value: position)' #Should show ranking with regards to relative change in land area affected under 2 degrees temperature change
-                   #rank_land_tc_rel_2081_2100 = '(ranking-value: land-area-affected-by-river-flood-relative-changes_ISIMIP-projections_versus-timeslices_'+country_name+' value: position time:2081-2100)'
+
+                   rank_land_tc_rel_2c        = '(ranking-value: land-area-affected-by-river-flood-relative-changes_ISIMIP-projections_versus-temperature-change_'+country_name+' value: position temperature:2)' #Should show ranking with regards to relative change in land area affected under 2 degrees temperature change
+                   rank_land_tc_rel_2081_2100 = '(ranking-value: land-area-affected-by-river-flood-relative-changes_ISIMIP-projections_versus-timeslices_'+country_name+' value: position time:2081-2100  scenario: rcp60)'
         
                    # Population exposed to INDICATOR
                    pop_indicator_raw         = data_pop_years['variable'] 
@@ -512,9 +484,9 @@ for indicator_name in indicator_names:
                    pop_rcp26_far_future_times = round((to_zero(data_pop_timeslices['data']['rcp26']['overall']['median'][21])/100+1),3)
                    pop_rcp60_rel_far_future_times = round((to_zero(data_pop_timeslices_relative_changes['data']['rcp60']['overall']['median'][21])/100+1),3)
                    pop_rcp26_rel_far_future_times = round((to_zero(data_pop_timeslices_relative_changes['data']['rcp26']['overall']['median'][21])/100+1),3)
-                
-                   #rank_pop_tc_rel_2c       = '(ranking-value: land-area-affected-by-river-flood-relative-changes_ISIMIP-projections_'+country_name+' value: position)'# Should show ranking with regards to relative change in population exposed under 2 degrees temperature change
-                   #rank_pop_tc_rel_2081_2100= '(ranking-value: population-exposed-to-river-flood-relative-changes_ISIMIP-projections_versus-timeslices_'+country_name+' value: position time:2081-2100)'
+
+                   rank_pop_tc_rel_2c       = '(ranking-value: land-area-affected-by-river-flood-relative-changes_ISIMIP-projections_versus-temperature-change_'+country_name+' value: position temperature:2)'# Should show ranking with regards to relative change in population exposed under 2 degrees temperature change
+                   rank_pop_tc_rel_2081_2100= '(ranking-value: population-exposed-to-river-flood-relative-changes_ISIMIP-projections_versus-timeslices_'+country_name+' value: position time:2081-2100 scenario: rcp60)'
                    
                    # Writing the text. 
 
@@ -537,16 +509,24 @@ for indicator_name in indicator_names:
                            land_tc_rel_ov_md_2c_times=land_tc_rel_ov_md_2c_times,land_rcp60_rel_far_future_times=land_rcp60_rel_far_future_times,
                            land_rcp60_abs_far_future=land_rcp60_abs_far_future,land_rcp26_rel_far_future_times=land_rcp26_rel_far_future_times,
                            land_rcp26_abs_far_future=land_rcp26_abs_far_future, 
+                           rank_land_tc_rel_2c=rank_land_tc_rel_2c,
+                           rank_land_tc_rel_2081_2100=rank_land_tc_rel_2081_2100,
                            
                            world_land_tc_rel_ov_md_2c_times=world_land_tc_rel_ov_md_2c_times,
+                           world_rank_land_rcp60_rel_far_future=world_rank_land_rcp60_rel_far_future,
+                           world_rank_land_rcp60_rel_far_future_high_or_low=world_rank_land_rcp60_rel_far_future_high_or_low,
                            world_land_rcp60_rel_far_future_times=world_land_rcp60_rel_far_future_times,
                            world_land_tc_ov_md_0c=world_land_tc_ov_md_0c,
+                           world_rank_land_tc_rel_2c=world_rank_land_tc_rel_2c,
+                           world_rank_land_tc_rel_2c_high_or_low=world_rank_land_tc_rel_2c_high_or_low,
                            world_pop_tc_ov_md_0c=world_pop_tc_ov_md_0c,
                            world_pop_tc_rel_ov_md_2c_times=world_pop_tc_rel_ov_md_2c_times,
                            world_pop_rcp60_rel_far_future_times=world_pop_rcp60_rel_far_future_times,
-            
-                           climate_model_list_text=climate_model_list_text,climate_model_with_or_without_s=climate_model_with_or_without_s, 
-                           impact_model_list_text=impact_model_list_text,impact_model_with_or_without_s=impact_model_with_or_without_s,               
+                           world_rank_pop_tc_rel_2c=world_rank_pop_tc_rel_2c,
+                           world_rank_pop_tc_rel_2c_high_or_low=world_rank_pop_tc_rel_2c_high_or_low,
+                           world_rank_pop_rcp60_rel_far_future=world_rank_pop_rcp60_rel_far_future,
+                           world_rank_pop_rcp60_rel_far_future_high_or_low=world_rank_pop_rcp60_rel_far_future_high_or_low, 
+                           
         
                            climate_model_list=climate_model_list,impact_model_list=impact_model_list,country_apostrophe=country_apostrophe,
         
@@ -564,6 +544,9 @@ for indicator_name in indicator_names:
                            pop_tc_rel_ov_md_2c_times=pop_tc_rel_ov_md_2c_times,
                            minimum_pop_tc_abs_ov_md_1c=minimum_pop_tc_abs_ov_md_1c,maximum_pop_tc_abs_ov_md_1c=maximum_pop_tc_abs_ov_md_1c,
                            minimum_pop_tc_abs_ov_md_2c=minimum_pop_tc_abs_ov_md_2c,maximum_pop_tc_abs_ov_md_2c=maximum_pop_tc_abs_ov_md_2c,
+                           rank_pop_tc_rel_2c=rank_pop_tc_rel_2c,
+                           rank_pop_tc_rel_2081_2100=rank_pop_tc_rel_2081_2100
+
                            )          
                            
                     output_foulder_local = output_foulder+indicator_short.replace(' ','-')+'/ISIMIP-projections/'+country_name
