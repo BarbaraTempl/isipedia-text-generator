@@ -66,7 +66,7 @@ def _process_area(indicator_name, area, land_or_pop, input_foulder):
       scenarios_list = js['climate_scenario_list']
       time_tags = {
         "far_future" : (2081, 2100),
-        "near_future" : (2041, 2050),
+        "near_future" : (2041, 2060),
         "today" : (2001, 2020),
       }
       indices = {tag: timeslices_list.index(period) for tag, period in time_tags.items()}
