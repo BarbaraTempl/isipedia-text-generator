@@ -83,6 +83,7 @@ def _process_area(indicator_name, area, land_or_pop, input_foulder):
   land_tc_abs_ov_md_0c   = round(to_zero(data_land_temperature_change_absolute_changes['data']['overall']['median'][0]),3) 
   land_tc_abs_ov_md_1c   = round(to_zero(data_land_temperature_change_absolute_changes['data']['overall']['median'][2]),3) 
   land_tc_abs_ov_md_2c   = round(to_zero(data_land_temperature_change_absolute_changes['data']['overall']['median'][4]),3) 
+
   list_land_tc_abs_ov_md_1c = []
   for climate_model in data_land_timeslices['climate_model_list']:
       for impact_model in data_land_timeslices['impact_model_list']:
@@ -115,22 +116,27 @@ def _process_area(indicator_name, area, land_or_pop, input_foulder):
   land_tc_ov_md_1c_times = round((to_zero(data_land_temperature_change['data']['overall']['median'][2])/100+1),3)
 
 
-  land_tc_rel_ov_md_2c   = round(to_zero(data_land_temperature_change_relative_changes['data']['overall']['median'][4]),3) 
+  land_tc_rel_ov_md_2c   = round(to_zero(data_land_temperature_change_relative_changes['data']['overall']['median'][4]),3)   
 
-  land_pc_abs_today      = round(to_zero(data_land_timeslices_absolute_changes['data']['rcp60']['overall']['median'][17]),3)
-  # land_pc_abs_far_future = round(to_zero(data_land_timeslices_absolute_changes['data']['piControl']['overall']['median'][21]),3)
-  # land_pc_rel_far_future = round(to_zero(data_land_timeslices_relative_changes['data']['piControl']['overall']['median'][21]),3)
+  timeslices_list = [tuple(e) for e in data_land_timeslices['timeslices_list']]
+  itoday = timeslices_list.index((2001, 2020))
+  ifuture = timeslices_list.index((2081, 2100))
 
-  land_rcp26_abs_far_future  = round(to_zero(data_land_timeslices_absolute_changes['data']['rcp26']['overall']['median'][21]),3)
-  land_rcp60_abs_far_future  = round(to_zero(data_land_timeslices_absolute_changes['data']['rcp60']['overall']['median'][21]),3)
-  land_rcp26_rel_far_future  = round(to_zero(data_land_timeslices_relative_changes['data']['rcp26']['overall']['median'][21]),3)
-  land_rcp60_rel_far_future  = round(to_zero(data_land_timeslices_relative_changes['data']['rcp60']['overall']['median'][21]),3)
-  land_rcp26_far_future      = round(to_zero(data_land_timeslices['data']['rcp26']['overall']['median'][21]),3)
-  land_rcp60_far_future      = round(to_zero(data_land_timeslices['data']['rcp60']['overall']['median'][21]),3)
-  land_rcp60_far_future_times = round((to_zero(data_land_timeslices['data']['rcp60']['overall']['median'][21])/100+1),3)
-  land_rcp26_far_future_times = round((to_zero(data_land_timeslices['data']['rcp26']['overall']['median'][21])/100+1),3)
-  land_rcp60_rel_far_future_times = round(to_zero(data_land_timeslices_relative_changes['data']['rcp60']['overall']['median'][21])/100+1,3)
-  land_rcp26_rel_far_future_times = round(to_zero(data_land_timeslices_relative_changes['data']['rcp26']['overall']['median'][21])/100+1,3)
+  land_pc_abs_today      = round(to_zero(data_land_timeslices_absolute_changes['data']['rcp60']['overall']['median'][itoday]),3)
+
+  # land_pc_abs_far_future = round(to_zero(data_land_timeslices_absolute_changes['data']['piControl']['overall']['median'][ifuture]),3)
+  # land_pc_rel_far_future = round(to_zero(data_land_timeslices_relative_changes['data']['piControl']['overall']['median'][ifuture]),3)
+
+  land_rcp26_abs_far_future  = round(to_zero(data_land_timeslices_absolute_changes['data']['rcp26']['overall']['median'][ifuture]),3)
+  land_rcp60_abs_far_future  = round(to_zero(data_land_timeslices_absolute_changes['data']['rcp60']['overall']['median'][ifuture]),3)
+  land_rcp26_rel_far_future  = round(to_zero(data_land_timeslices_relative_changes['data']['rcp26']['overall']['median'][ifuture]),3)
+  land_rcp60_rel_far_future  = round(to_zero(data_land_timeslices_relative_changes['data']['rcp60']['overall']['median'][ifuture]),3)
+  land_rcp26_far_future      = round(to_zero(data_land_timeslices['data']['rcp26']['overall']['median'][ifuture]),3)
+  land_rcp60_far_future      = round(to_zero(data_land_timeslices['data']['rcp60']['overall']['median'][ifuture]),3)
+  land_rcp60_far_future_times = round((to_zero(data_land_timeslices['data']['rcp60']['overall']['median'][ifuture])/100+1),3)
+  land_rcp26_far_future_times = round((to_zero(data_land_timeslices['data']['rcp26']['overall']['median'][ifuture])/100+1),3)
+  land_rcp60_rel_far_future_times = round(to_zero(data_land_timeslices_relative_changes['data']['rcp60']['overall']['median'][ifuture])/100+1,3)
+  land_rcp26_rel_far_future_times = round(to_zero(data_land_timeslices_relative_changes['data']['rcp26']['overall']['median'][ifuture])/100+1,3)
 
   rank_land_tc_rel_2c        = '(ranking-value: '+land_or_pop_long+'-river-flood-relative-changes_ISIMIP-projections_versus-temperature-change_'+area+' value: position temperature:2)' #Should show ranking with regards to relative change in land area affected under 2 degrees temperature change
   rank_land_tc_rel_2081_2100 = '(ranking-value: '+land_or_pop_long+'-river-flood-relative-changes_ISIMIP-projections_versus-timeslices_'+area+' value: position time:2081-2100  scenario: rcp60)'
