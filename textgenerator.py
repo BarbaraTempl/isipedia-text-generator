@@ -77,23 +77,26 @@ def _process_area(indicator_name, area, land_or_pop, input_foulder):
   land_indicator_capital = data_land_timeslices['variable'].replace('-',' ').capitalize()
   indicator_short        = data_land_timeslices['indicator'].replace('-',' ')#land_indicator.replace('land area affected by ','') 
 
-  climate_model_list     = len(data_land_timeslices['climate_model_list'])
-  impact_model_list      = len(data_land_timeslices['impact_model_list'])                      
+  climate_model_list = data_land_timeslices['climate_model_list']
+  impact_model_list = data_land_timeslices['impact_model_list']
+
+  nb_climate_models     = len(climate_model_list)
+  nb_impact_models      = len(impact_model_list)
   
   land_tc_abs_ov_md_0c   = round(to_zero(data_land_temperature_change_absolute_changes['data']['overall']['median'][0]),3) 
   land_tc_abs_ov_md_1c   = round(to_zero(data_land_temperature_change_absolute_changes['data']['overall']['median'][2]),3) 
   land_tc_abs_ov_md_2c   = round(to_zero(data_land_temperature_change_absolute_changes['data']['overall']['median'][4]),3) 
 
   list_land_tc_abs_ov_md_1c = []
-  for climate_model in data_land_timeslices['climate_model_list']:
-      for impact_model in data_land_timeslices['impact_model_list']:
+  for climate_model in climate_model_list:
+      for impact_model in impact_model_list:
           list_land_tc_abs_ov_md_1c.append(round(to_zero(data_land_temperature_change_absolute_changes['data'][climate_model]['runs'][impact_model]['mean'][2]),3))
   minimum_land_tc_abs_ov_md_1c = min(list_land_tc_abs_ov_md_1c)
   maximum_land_tc_abs_ov_md_1c = max(list_land_tc_abs_ov_md_1c)
 
   list_land_tc_abs_ov_md_2c = []
-  for climate_model in data_land_timeslices['climate_model_list']:
-      for impact_model in data_land_timeslices['impact_model_list']:
+  for climate_model in climate_model_list:
+      for impact_model in impact_model_list:
           list_land_tc_abs_ov_md_2c.append(round(to_zero(data_land_temperature_change_absolute_changes['data'][climate_model]['runs'][impact_model]['mean'][4]),3))
   minimum_land_tc_abs_ov_md_2c = min(list_land_tc_abs_ov_md_2c)
   maximum_land_tc_abs_ov_md_2c = max(list_land_tc_abs_ov_md_2c)
@@ -145,8 +148,8 @@ def _process_area(indicator_name, area, land_or_pop, input_foulder):
   kw = dict(
           indicator_short=indicator_short, name=country, code=area,
 
-          climate_model_list=climate_model_list,
-          impact_model_list=impact_model_list, 
+          nb_climate_models=nb_climate_models,
+          nb_impact_models=nb_impact_models, 
           apostrophe=country_apostrophe,
 
           # land exposed to
@@ -197,7 +200,7 @@ def process_indicator(indicator_name, input_foulder, output_foulder, country_nam
 
   ## Look world first
   # world_results = process_world(indicator_name, input_foulder, output_foulder)
-  general_vars = ['impact_model_list', 'climate_model_list', 
+  general_vars = ['nb_impact_models', 'nb_climate_models', 
   'land_indicator', 'indicator_short', 'pop_indicator', 'land_indicator_capital', 'pop_indicator_capital']
               # indicator_short=indicator_short,country=country,country_name=area,land_indicator_capital=land_indicator_capital,
 

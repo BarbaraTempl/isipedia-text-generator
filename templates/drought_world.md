@@ -15,7 +15,7 @@
 
 ### Abstract
 
-This (link: glossary/climate-impact-assessment text: climate impact) assessment presents (link: glossary/projections text: projections) of the land area affected by droughts and the number of people exposed to droughts globally, based on {impact_model_list} different (link: glossary/global-hydrological-models text: global hydrological models) (GHMs) and {climate_model_list} different global (link: glossary/climate-models text: climate models)(GCMs) participating in the [ISIMIP](https://www.isimip.org/) project.
+This (link: glossary/climate-impact-assessment text: climate impact) assessment presents (link: glossary/projections text: projections) of the land area affected by droughts and the number of people exposed to droughts globally, based on {nb_impact_models} different (link: glossary/global-hydrological-models text: global hydrological models) (GHMs) and {nb_climate_models} different global (link: glossary/climate-models text: climate models)(GCMs) participating in the [ISIMIP](https://www.isimip.org/) project.
 
 Here, (link: glossary/droughts text: droughts) refer to a situation where the monthly (link: glossary/soil-moisture text: soil moisture) conditions fall short of the 2.5th percentile (glossary/link: variable-monthly-threshold text: variable monthly threshold) for at least 7 consecutive months. To calculate the total land area affected by drought at the global scale the land area exposed to drought is summed up across all grid cells worldwide. Multiplying, at each grid cell, with the number of people living in the grid cell yields the number of people exposed to drought globally.
 
