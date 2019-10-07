@@ -110,7 +110,7 @@ A ranking of countries for each indicator is also provided to compare countries 
 
 We assume that the number of people living in an area, as well as the area’s land use and land cover (what fractions of the area are used for settlement, cropland, or pasture, or covered by forest), remain constant at the levels of year 2005 throughout the whole simulation. This is not meant to be realistic, but to isolate the influence of climate change from the influence of other changes.
 
-In the key messages we report the results for the median (the model in the middle) of the group of global hydrological models that ran simulations in (link: glossary/isimip2b text: ISIMIP2b).
+In the key messages we report the results for the (link: glossary/median text: median) of the (link: glossary/model-ensemble text: model ensemble) of global hydrological models that ran simulations in (link: glossary/isimip2b text: ISIMIP2b). The median represents the middle of the ensemble, meaning that 50% of the ensemble members provide higher numbers and 50% provide lower numbers.
 
 
 ### Discussion
