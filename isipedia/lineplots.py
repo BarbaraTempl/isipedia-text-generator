@@ -2,18 +2,26 @@ import os
 import numpy as np
 import netCDF4 as nc
 import dimarray as da
+import json
 
-from isipedia.config import cube_data_stefan, cube_data_out, mask_file, totpopfile, gridareafile
+CONFIG_FILE_DEFAULT = os.path.join(os.path.dirname(__file__), 'config.json')
+
+class Config:
+    def __init__(self, configfile=CONFIG_FILE_DEFAULT):
+        vars(self).update(json.load(configfile))
+
+# from isipedia.config import cube_data_stefan, cube_data_out, mask_file, totpopfile, gridareafile
 
 
 class Variable:
-    def __init__(self, name):
+    def __init__(self, name, config=None):
         """ e.g. land-area-affected-by-drought-absolute-changes_ISIMIP-projections_versus-temperature-change/
         """
         self.name = name
         vars(self).update(self._parse_name())
         assert name == self._buildname(**vars(self))
         self._init_axes()
+        self.config = config or Config()
 
     @classmethod
     def fromparams(cls, **params):
@@ -54,7 +62,7 @@ class Variable:
         params = vars(self).copy()
         axis = params.pop('axis')
         axis = 'versus-year' if axis in ['versus-timeslices', 'versus-years'] else axis
-        return (cube_data_stefan +
+        return (self.config.cube_data_stefan +
                 '{variable}/future-projections/{area}/{variable}_future-projections_{area}_{axis}.nc'.format(
                     variable=self.ncvariable.replace('_','-'), axis=axis, area=area, **params))
 
@@ -63,11 +71,11 @@ class Variable:
         return self.areanc('grid-level')
 
     def jsonfile(self, area):
-        return os.path.join(cube_data_out, self.indicator, self.studytype, area, self.name+'_'+area+'.json')
+        return os.path.join(self.config.cube_data_out, self.indicator, self.studytype, area, self.name+'_'+area+'.json')
     
     @property
     def griddir(self):
-        return os.path.join(cube_data_out, self.indicator, self.studytype, 'world', 'maps', self.name)
+        return os.path.join(self.config.cube_data_out, self.indicator, self.studytype, 'world', 'maps', self.name)
 
     def gridcsv(self, point):
         return os.path.join(self.griddir, str(point)+'.csv')
@@ -344,9 +352,10 @@ def generate_variables(indicators, exposures, changes, axes):
                 for indicator in indicators for exposure in exposures for change in changes for axis in axes]
 
 
-def get_areas(geom=False, mask=False, mask_file=mask_file):
+def get_areas(geom=False, mask=False, mask_file=None):
     import shapely.geometry as shg
     import fiona
+    mask_file = mask_file or Config().mask_file
 
     with nc.Dataset(mask_file) as ds:
         codes = sorted([v[2:] for v in ds.variables.keys() if v.startswith('m_')])
