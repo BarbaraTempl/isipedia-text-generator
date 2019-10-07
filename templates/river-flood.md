@@ -16,7 +16,7 @@ In the key messages we report the results for the (link: glossary/median text: m
 
 * At 2 degrees Celsius of global warming, {country.apostrophe} {land_indicator} is projected to increase by a factor of {land_tc_rel_ov_md_2c} compared to a world without human-made greenhouse gas emissions, to {land_tc_ov_md_0c}%. Likewise, {country.apostrophe} {pop_indicator} is projected to increase by a factor {pop_tc_rel_ov_md_2c}, to {pop_tc_ov_md_0c}%.
 
-* Following the higher-emissions scenario (RCP6.0) which can entail over 3 degrees Celsius of global warming by the end of the century (2081-2100), this factor is projected to reach {land_rcp60_far_future_times} for the land area affected to {indicator_short} (to {land_rcp60_far_future_times}%) and {pop_rcp60_far_future_times} for the {pop_indicator} (to {pop_rcp60_far_future}%).
+* Following the higher-emissions scenario (RCP6.0) which can entail over 3 degrees Celsius of global warming by the end of the century (2081-2100), this factor is projected to reach {land_rcp60_rel_far_future_times} for the land area affected to {indicator_short} (to {land_rcp60_far_future}%) and {pop_rcp60_rel_far_future_times} for the {pop_indicator} (to {pop_rcp60_far_future}%).
 
 * {country.name} ranks {rank_land_tc_rel_2c} with regards to its relative change in {land_indicator} at 2 degrees Celsius of global warming in comparison to a situation without anthropogenic climate change. For the relative change in {pop_indicator}, {country.apostrophe} ranking is {rank_pop_tc_rel_2c}.
 
