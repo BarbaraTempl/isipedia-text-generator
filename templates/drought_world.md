@@ -37,6 +37,7 @@ For the future projections, an additional distinction is made between the result
 By hovering over or clicking on a particular value in the figure additional details, such as the specific global climate or hydrological model used, behind the presented value become available. 
 Below the graph you can also see, how countries ranks in comparison to other countries on their relative change in land area affected by or population exposed to droughts.
 
+
 ### Results
 
 #### Land area affected by droughts
@@ -67,11 +68,12 @@ Worldwide, countries that rank highest with regards to their relative change in 
 
 The countries that rank highest with regards to their relative change in population exposed to droughts towards the-end-of-the-century under a higher-emissions scenario (RCP6.0), in comparison to a situation without anthropogenic climate change, implying most severe impacts, are: (ranking-area: population-exposed-to-drought-relative-changes_ISIMIP-projections_versus-timeslices order: 1 value: name time: 2081-2100 scenario: rcp60 type: country), (ranking-area: population-exposed-to-drought-relative-changes_ISIMIP-projections_versus-timeslices order: 2 value: name time: 2081-2100 scenario: rcp60 type: country), (ranking-area: population-exposed-to-drought-relative-changes_ISIMIP-projections_versus-timeslices order: 3 value: name time: 2081-2100 scenario: rcp60 type: country), (ranking-area: population-exposed-to-drought-relative-changes_ISIMIP-projections_versus-timeslices order: 4 value: name time: 2081-2100 scenario: rcp60 type: country), (ranking-area: population-exposed-to-drought-relative-changes_ISIMIP-projections_versus-timeslices order: 5 value: name time: 2081-2100 scenario: rcp60 type: country).
 
+
 ### Methodology
 
 #### What do we analyze?
 
-We analyze the land area affected by droughts and the number of people exposed to droughts at different levels of global warming (0, 1, 2, and 3 degrees Celsius) and during different time periods. We cover the time before anthropogenic climate change started (1850), present-day (2001-2020), mid-century (2041-2060) and end-of-century (2081-2100). We compare the later periods against the climate conditions before anthropogenic climate change (1850).
+We analyze the land area affected by droughts and the number of people exposed to droughts at different levels of global warming (0, 1, 2, and 3 degrees Celsius) and during different time periods. We cover the time before anthropogenic climate change has started (1850), present-day (2001-2020), mid-century (2041-2060) and end-of-century (2081-2100). We compare the later periods against the climate conditions before anthropogenic climate change (1850).
 
 #### How do we calculate where and when a drought occurs?
 
@@ -83,16 +85,15 @@ The models we use cover the whole globe’s land area. The land area is divided 
 
 #### How is soil moisture calculated?
 
-The calculation is done for each grid cell and each day. Information about temperature, precipitation, solar radiation, and other weather indicators is taken from the global climate models (
-s) and used as input for the ISIMIP global hydrological models (GHMs). Additional spatial data, such as soil, land cover and water bodies are also inputted. Soil moisture, i.e. the water stored in the soil in liquid or frozen form, is calculated as the difference between the amount of water coming in as rain or snow, and the amount of water going out, either through evapotranspiration from the surface and vegetation, or through percolation of water towards the deeper ground water layers. Global hydrological models include a different representation of the (link: glossary/soil-water-column text: soil water column) with different numbers of soil compartments with varying depths of the soil water layer(s), ranging from one soil water layer with a depth of between 0.1 - 4 meter up to 15 fully resolved soil water layers with a total depth up to 45 meter.
+The calculation is done for each grid cell and each day. Information about temperature, precipitation, solar radiation, and other weather indicators is taken from the global climate models (GCMs) and used as input for the ISIMIP global hydrological models (GHMs). Additional spatial data, such as soil, land cover and water bodies are also inputted. Soil moisture, i.e. the water stored in the soil in liquid or frozen form, is calculated as the difference between the amount of water coming in as rain or snow, and the amount of water going out, either through evapotranspiration from the surface and vegetation, or through percolation of water towards the deeper ground water layers. Global hydrological models include a different representation of the (link: glossary/soil-water-column text: soil water column) with different numbers of soil compartments with varying depths of the soil water layer(s), ranging from one soil water layer with a depth of between 0.1 - 4 meter up to 15 fully resolved soil water layers with a total depth up to 45 meter.
 
 Here, we use (link: glossary/rootzone-soil-moisture text: rootzone soil moisture) estimates, the portion of soil moisture that is within the rooting depth of plants, when directly provided by the global hydrological models. For global hydrological models that do not directly provide rootzone soil moisture conditions, we approximated this variable by integrating soil moisture across multiple soil water layers in order to reach a depth of ~1 meter.
 
-Daily rootzone soil moisture values were finally aggregated into monthly average rootzone soil moisture conditions per grid cell.
+Daily rootzone soil moisture values are finally aggregated into monthly average rootzone soil moisture conditions per grid cell.
 
 #### How is the 2.5th percentile variable monthly threshold calculated?
 
-To distinguish between periods of drought and periods of no drought we applied a (link: glossary/variable-monthly-threshold text: variable monthly threshold) level method over the monthly rootzone soil moisture conditions, using a 2.5th percentile value. Using the pre-industrial scenario as a reference period, we identified at the grid-level, per global hydrological model and global climate model, and for each month individually, the monthly rootzone soil moisture value that represents the 2.5th percentile value. This can be interpret as the monthly rootzone soil moisture condition that is exceeded 39 out of 40 times throughout the full time-period under study. The use of a variable monthly threshold to distinguish drought from periods of no drought allows accounting for seasonal climatology, which is relevant for the management of water resources.
+To distinguish between periods of drought and periods of no drought we applied a (link: glossary/variable-monthly-threshold text: variable monthly threshold) level method over the monthly rootzone soil moisture conditions, using a 2.5th percentile value. Using the pre-industrial scenario as a reference period, we identified at the grid-level, per global hydrological model and global climate model, and for each month individually, the monthly rootzone soil moisture value that represents the 2.5th percentile value. This can be interpreted as the monthly rootzone soil moisture condition that is exceeded 39 out of 40 times throughout the full time-period under study. The use of a variable monthly threshold to distinguish drought from periods of no drought allows accounting for seasonal climatology, which is relevant for the management of water resources.
 
 #### How do we know whether a drought occurs?
 
@@ -104,7 +105,7 @@ To estimate the global land area affected by and population exposed to droughts 
 
 #### How the ranking of countries are calculated?
 
-A ranking of countries for each indicator is also provided to compare countries on the basis of their relative change in land area affected or number of people exposed under different levels of global warming and for various time horizons, compared to conditions without climate change. A ranking of 1 implies that the country experiences a change in the indicator higher than all other ranked countries, for example the strongest impacts from climate change; whereas a lower ranking entails comparatively less effects due to climate change.
+A ranking of countries for the indicator allow us to compare countries on the basis of their relative change in land area affected or number of people exposed under different levels of global warming and for various time horizons, compared to conditions without climate change. A ranking of 1 (most affected) implies that the country experiences a change in the indicator higher than all other ranked countries; whereas a lower ranking entails comparatively less effects due to climate change.
 
 #### What else should I know about the methodology?
 
