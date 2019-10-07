@@ -117,7 +117,7 @@ In the key messages we report the results for the (link: glossary/median text: m
 
 ### How to cite this climate impact assessment report?
 Should get idea from this [Website](http://www.zamg.ac.at/pep725/downloads/PEP725_Data_Use_Policy_201805.pdf)
-
+Otherwise refer to Lange et al. 2019 (Lange, S., Volkholz, J., Geiger, T., Zhao, F., Vega, I., Veldkamp, T., Reyer, C., Warszawski, L., Huber, ., Jägermeyer, J., Schewe, J., Bresch, D., Büchner, M., Chang, J., Ciais, P., Dury, M., Emanuel, K., Folberth, C., Gerten, D., Gosling, S., .... et al. Historical warming has almost triplet global population annually exposed to extreme events.
 
 ### Discussion
 
