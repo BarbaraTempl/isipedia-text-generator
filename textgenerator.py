@@ -187,7 +187,7 @@ def _process_area(indicator_name, area, land_or_pop, input_foulder):
 
 
 
-def process_indicator(indicator_name, input_foulder, output_foulder):
+def process_indicator(indicator_name, input_foulder, output_foulder, country_names=None):
 
   ## Look world first
   # world_results = process_world(indicator_name, input_foulder, output_foulder)
@@ -210,10 +210,10 @@ def process_indicator(indicator_name, input_foulder, output_foulder):
   with open(md_file, 'w') as f:
       f.write(text)
       
- 
-  country_names= os.listdir (input_foulder+indicator_name+'/ISIMIP-projections')
   # Going though all the countries in the list.
-  country_names= os.listdir (input_foulder+indicator_name+'/ISIMIP-projections')
+  if country_names is None:
+    country_names = os.listdir (input_foulder+indicator_name+'/ISIMIP-projections')
+
   for country_name in country_names:
      if(country_name != 'oceans' and country_name != 'world'):
       #if(country_name == 'AFG'):
@@ -242,6 +242,7 @@ def main():
 
   parser = argparse.ArgumentParser()
   parser.add_argument('--indicators', nargs='*', help='scan all indicators by default')
+  parser.add_argument('--areas', nargs='*', help='scan all areas by default')
   parser.add_argument('--input-folder', default='test-data', help='%(defaults)s')
   parser.add_argument('--output-folder', default='test-data', help='%(defaults)s')
 
@@ -251,7 +252,7 @@ def main():
     o.indicators = os.listdir (o.input_folder)  
 
   for indicator_name in o.indicators:
-    process_indicator(indicator_name, o.input_folder+'/', o.output_folder+'/')
+    process_indicator(indicator_name, o.input_folder+'/', o.output_folder+'/', country_names=o.areas)
 
 
 if __name__ == '__main__':
