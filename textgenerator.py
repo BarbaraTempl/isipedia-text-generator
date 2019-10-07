@@ -110,7 +110,10 @@ def _process_area(indicator_name, area, land_or_pop, input_foulder):
     else:
       raise ValueError(repr(v.axis))
 
-  res[land_or_pop+'_substract_2_and_1'] = res[land_or_pop+'_tc_ov_md_2c'] - res[land_or_pop+'_tc_ov_md_1c']
+  try:
+    res[land_or_pop+'_substract_2_and_1'] = res[land_or_pop+'_tc_ov_md_2c'] - res[land_or_pop+'_tc_ov_md_1c']
+  except TypeError:
+    res[land_or_pop+'_substract_2_and_1'] = None
 
   # pick a variable without relative/absolute in the name 
   for v in variables:
