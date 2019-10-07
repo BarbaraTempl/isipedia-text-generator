@@ -2,9 +2,9 @@
 
 * Without human-made greenhouse gas emissions, {world.land_tc_ov_md_0c}% of the global land area and {world.pop_tc_ov_md_0c}% of the world’s population would be affected by droughts each year, on average. 
 
-* At today’s levels of 1 degrees Celsius of global warming the land area affected is {world.land_tc_rel_ov_md_1c_times} times as much: {world.land_tc_rel_ov_md_1c}% of the total land area, while the number of people affected is {world.pop_tc_rel_ov_md_1c_times} times as much: {world.pop_tc_ov_md_1c}% of the total population.
+* At today’s levels of 1 degrees Celsius of global warming the land area affected by drought is {world.land_tc_rel_ov_md_1c_times} times as much: {world.land_tc_rel_ov_md_1c}% of the total land area, while the number of people affected by drought is {world.pop_tc_rel_ov_md_1c_times} times as much: {world.pop_tc_ov_md_1c}% of the total population.
 
-* At 2 degrees Celsius of global warming, the global land area affected by droughts is projected to increase by a factor of {world.land_tc_rel_ov_md_2c} compared to a world without human-made greenhouse gas emissions, to {world.land_tc_ov_md_0c}%. Likewise, the world’s population exposed to droughts is projected to increase by a factor {world.pop_tc_rel_ov_md_2c}, to {world.pop_tc_ov_md_0c}%.
+* At 2 degrees Celsius of global warming, the global land area affected by drought is projected to increase by a factor of {world.land_tc_rel_ov_md_2c} compared to a world without human-made greenhouse gas emissions, to {world.land_tc_ov_md_0c}%. Likewise, the world’s population exposed to droughts is projected to increase by a factor {world.pop_tc_rel_ov_md_2c}, to {world.pop_tc_ov_md_0c}%.
 
 * Following the higher-emissions scenario (RCP6.0) which can entail over 3 degrees Celsius of global warming by the end of the century (2081-2100), this factor is projected to reach {world.land_rcp60_far_future_times} for the global land area affected to droughts (to {world.land_rcp60_far_future_times}%) and {world.pop_rcp60_far_future_times} for the world’s population exposed to droughts (to {world.pop_rcp60_far_future}%).
 
@@ -15,14 +15,11 @@
 
 ### Overview
 
-In the key messages we highlight main results of the (link: glossary/climate-impact-assessment text: climate impact) assessments about (link: glossary/projections text: projections) of the land area affected by droughts and the number of people exposed to droughts globally, based on {impact_model_list} different (link: glossary/global-hydrological-models text: global hydrological models) (GHMs) and {climate_model_list} different global (link: glossary/climate-models text: climate models)(GCMs) participating in the [ISIMIP](https://www.isimip.org/) project.
+In the key messages we highlight the main results of the (link: glossary/climate-impact-assessment text: climate impact) assessments about (link: glossary/projections text: projections) of the land area affected by droughts and the number of people exposed to droughts globally. The projections are based on {impact_model_list} different (link: glossary/global-hydrological-models text: global hydrological models) (GHMs) and {climate_model_list} various global (link: glossary/climate-models text: climate models)(GCMs) participating in the [ISIMIP](https://www.isimip.org/) project.
 
-Here, (link: glossary/droughts text: droughts) refer to a situation where the monthly (link: glossary/soil-moisture text: soil moisture) conditions fall short of the 2.5th percentile (glossary/link: variable-monthly-threshold text: variable monthly threshold) for at least 7 consecutive months. To calculate the total land area affected by drought at the global scale the land area exposed to drought is summed up across all grid cells worldwide. Multiplying, at each grid cell, with the number of people living in the grid cell yields the number of people exposed to drought globally.
+Here, (link: glossary/droughts text: droughts) refer to a situation where the monthly (link: glossary/soil-moisture text: soil moisture) conditions fall short of the 2.5th percentile (glossary/link: variable-monthly-threshold text: variable monthly threshold) for at least 7 consecutive months. To calculate the total land area affected by drought at the global scale the land area exposed to drought is summed up across all grid cells worldwide. Multiplying, at each grid cell, with the number of people living in the grid cell yields the number of people exposed to drought globally. More details about the Methodology can be found at the Methodology (link: Methodology) section.
 
 We analyze the land area affected by droughts and the number of people exposed to droughts at different (link: glossary/levels-of-global-warming text: levels of global warming)(0, 1, 2, and 3 degrees Celsius) and during different time periods. We cover the time before (link: glossary/anthropogenic-climate-change text: anthropogenic climate change) started (conventionally set at 1850), present-day (2001-2020), mid-century (2041-2060) and end-of-century (2081-2100). We compare the later periods against the climate conditions before anthropogenic climate change started (1850). A ranking of countries for each indicator is provided to allow comparison between countries on the basis of their (link: glossary/relative-change text: relative change) in the land area affected or the number of people exposed under different levels of global warming and for various time horizons, compared to conditions before anthropogenic climate change started. Here, a ranking of 1 implies that the country experiences a change in the (link: glossary/indicator text: indicator) that is more than all other ranked countries, whereas a lower ranking entails comparatively less effects due to climate change.
-
-It is important to note that our (link: glossary/future-projections text: future projections) assume that the number of people living in an area, as well as the area’s (link: glossary/land-use text: land use) and (link: glossary/land-cover text: land cover), remain constant to that of the year 2005. This is not necessarily meant to be realistic, but to isolate the influence of climate change from the influence of other changes.
-
 
 ### Results
 
@@ -95,13 +92,16 @@ With these obtained 2.5th percentile variable monthly threshold values, we then 
 
 To estimate the global land area affected by and population exposed to droughts we checked for each year whether a grid cell was exposed for at least one period of prolonged droughts. If so, the grid cell is accounted as ‘being exposed to droughts’ for that respective year. We then calculate the total global land area affected by drought by adding up all 0.5 degree x 0.5 degree grid cells worldwide, expect for Antarctica and Greenland. To calculate the global number of people exposed to droughts, we first multiply the each grid cell by the number of people living in that grid cell to estimate the number of people exposed to droughts, and then add up those numbers across all grid cells worldwide, except for Antarctica and Greenland.
 
+#### How the ranking of countries are calculated?
+
+A ranking of countries for each indicator is also provided to compare countries on the basis of their relative change in land area affected or number of people exposed under different levels of global warming and for various time horizons, compared to conditions without climate change. A ranking of 1 implies that the country experiences a change in the indicator higher than all other ranked countries, for example the strongest impacts from climate change; whereas a lower ranking entails comparatively less impacts.
+
 #### What else should I know about the methodology?
 
 We assume that the number of people living in an area, as well as the area’s land use and land cover (what fractions of the area are used for settlement, cropland, or pasture, or covered by forest), remain constant at the levels of year 2005 throughout the whole simulation. This is not meant to be realistic, but to isolate the influence of climate change from the influence of other changes.
 
-In the key messages we report the results for the median (the model in the middle) of the group of global hydrological models that ran simulations in (link: glossary/isimip2b text: ISIMIP2b). All model-specific results are presented in the figures and a discussion of the limitations of the analysis is included at the end of the report.
+In the key messages we report the results for the median (the model in the middle) of the group of global hydrological models that ran simulations in (link: glossary/isimip2b text: ISIMIP2b). All model-specific results are presented in the figures and the limitations of the analysis can be found in the discussion below.
 
-A ranking of countries for each indicator is also provided to compare countries on the basis of their relative change in land area affected or number of people exposed under different levels of global warming and for various time horizons, compared to conditions without climate change. A ranking of 1 implies that the country experiences a change in the indicator higher than all other ranked countries, for example the strongest impacts from climate change; whereas a lower ranking entails comparatively less impacts.
 
 ### Discussion
 
