@@ -18,7 +18,7 @@ In the key messages we report the results for the (link: glossary/median text: m
 
 * Following the higher-emissions scenario (RCP6.0) which can entail over 3 degrees Celsius of global warming by the end of the century (2081-2100), this factor is projected to reach 1.001 for the land area affected to river flood (to 1.001%) and 1.002 for the population exposed to river floods (to 0.229%).
 
-* Pakistan ranks (ranking-value: land-area-affected-by-river-flood-relative-changes_ISIMIP-projections_versus-temperature-change_PAK value: position temperature:2) with regards to its relative change in land area affected by river floods at 2 degrees Celsius of global warming in comparison to a situation without anthropogenic climate change. For the relative change in population exposed to river floods, Pakistan’s ranking is (ranking-value: land-area-affected-by-river-flood-relative-changes_ISIMIP-projections_versus-temperature-change_PAK value: position temperature:2).
+* Pakistan ranks (ranking-value: land-area-affected-by-river-flood-relative-changes_ISIMIP-projections_versus-temperature-change_PAK value: position temperature:2) with regards to its relative change in land area affected by river floods at 2 degrees Celsius of global warming in comparison to a situation without anthropogenic climate change. For the relative change in population exposed to river floods, Pakistan’s ranking is (ranking-value: population-exposed-to-river-flood-relative-changes_ISIMIP-projections_versus-temperature-change_PAK value: position temperature:2).
 
 ### Results
 
@@ -54,7 +54,7 @@ When presenting the ‘change in terms of time’, we find that when following t
 
 Globally, the population exposed to river floods each year, on average, is 0.171% in a situation without human-made greenhouse gas emissions. At 2 degrees of global warming or by the end-of-the-century under a higher-emissions scenario (RCP6.0) these values are foreseen to increase globally by 2.163% and 4.219% respectively.
 
-As such, Pakistan ranks (ranking-value: land-area-affected-by-river-flood-relative-changes_ISIMIP-projections_versus-temperature-change_PAK value: position temperature:2) with regards to its relative change in population exposed to river floods at 2 degrees Celsius of global warming in comparison to a situation without anthropogenic climate change. For the relative change in population exposed to river floods towards the-end-of-the-century under a business-as-usual emissions scenario, Pakistan’s ranking is (ranking-value: population-exposed-to-river-flood-relative-changes_ISIMIP-projections_versus-timeslices_PAK value: position time:2081-2100 scenario: rcp60).
+As such, Pakistan ranks (ranking-value: population-exposed-to-river-flood-relative-changes_ISIMIP-projections_versus-temperature-change_PAK value: position temperature:2) with regards to its relative change in population exposed to river floods at 2 degrees Celsius of global warming in comparison to a situation without anthropogenic climate change. For the relative change in population exposed to river floods towards the-end-of-the-century under a business-as-usual emissions scenario, Pakistan’s ranking is (ranking-value: population-exposed-to-river-flood-relative-changes_ISIMIP-projections_versus-timeslices_PAK value: position time:2081-2100  scenario: rcp60).
 
 ### Methodology
 

@@ -22,30 +22,31 @@ class AreaReport:
     vars(self).update(kw)
 
 
-def process_area(indicator_name, area, input_foulder, output_foulder):
+def process_area(indicator_name, area, input_foulder):
+  data = _process_area(indicator_name, area, 'land', input_foulder)
+  pop = _process_area(indicator_name, area, 'pop', input_foulder)
+  data.update(pop)
+  return AreaReport(**data)
 
+
+def _process_area(indicator_name, area, land_or_pop, input_foulder):
   dirname = input_foulder+indicator_name+'/ISIMIP-projections/'+area
 
+  if land_or_pop == 'land':
+    land_or_pop_long = 'land-area-affected-by'
+  else:
+    land_or_pop_long = 'population-exposed-to'
+
   # Land affected by INDICATOR
-  json_land_temperature_change_absolute_changes = dirname+'/land-area-affected-by-'+indicator_name+'-absolute-changes_ISIMIP-projections_versus-temperature-change_'+area+'.json'
-  json_land_timeslices_absolute_changes = dirname+'/land-area-affected-by-'+indicator_name+'-absolute-changes_ISIMIP-projections_versus-timeslices_'+area+'.json' 
+  json_land_temperature_change_absolute_changes = dirname+'/'+land_or_pop_long+'-'+indicator_name+'-absolute-changes_ISIMIP-projections_versus-temperature-change_'+area+'.json'
+  json_land_timeslices_absolute_changes = dirname+'/'+land_or_pop_long+'-'+indicator_name+'-absolute-changes_ISIMIP-projections_versus-timeslices_'+area+'.json' 
 
-  json_land_temperature_change = dirname+'/land-area-affected-by-'+indicator_name+'_ISIMIP-projections_versus-temperature-change_'+area+'.json'
-  json_land_timeslices = dirname+'/land-area-affected-by-'+indicator_name+'_ISIMIP-projections_versus-timeslices_'+area+'.json' 
+  json_land_temperature_change = dirname+'/'+land_or_pop_long+'-'+indicator_name+'_ISIMIP-projections_versus-temperature-change_'+area+'.json'
+  json_land_timeslices = dirname+'/'+land_or_pop_long+'-'+indicator_name+'_ISIMIP-projections_versus-timeslices_'+area+'.json' 
 
-  json_land_temperature_change_relative_changes = dirname+'/land-area-affected-by-'+indicator_name+'-relative-changes_ISIMIP-projections_versus-temperature-change_'+area+'.json'
-  json_land_timeslices_relative_changes = dirname+'/land-area-affected-by-'+indicator_name+'-relative-changes_ISIMIP-projections_versus-timeslices_'+area+'.json' 
+  json_land_temperature_change_relative_changes = dirname+'/'+land_or_pop_long+'-'+indicator_name+'-relative-changes_ISIMIP-projections_versus-temperature-change_'+area+'.json'
+  json_land_timeslices_relative_changes = dirname+'/'+land_or_pop_long+'-'+indicator_name+'-relative-changes_ISIMIP-projections_versus-timeslices_'+area+'.json' 
 
-  # Population exposed to INDICATOR
-  json_pop_temperature_change_absolute_changes = dirname+'/population-exposed-to-'+indicator_name+'-absolute-changes_ISIMIP-projections_versus-temperature-change_'+area+'.json'
-  json_pop_timeslices_absolute_changes = dirname+'/population-exposed-to-'+indicator_name+'-absolute-changes_ISIMIP-projections_versus-timeslices_'+area+'.json' 
-
-  json_pop_temperature_change = dirname+'/population-exposed-to-'+indicator_name+'_ISIMIP-projections_versus-temperature-change_'+area+'.json'
-  json_pop_timeslices = dirname+'/population-exposed-to-'+indicator_name+'_ISIMIP-projections_versus-timeslices_'+area+'.json' 
-
-  json_pop_temperature_change_relative_changes = dirname+'/population-exposed-to-'+indicator_name+'-relative-changes_ISIMIP-projections_versus-temperature-change_'+area+'.json'
-  json_pop_timeslices_relative_changes = dirname+'/population-exposed-to-'+indicator_name+'-relative-changes_ISIMIP-projections_versus-timeslices_'+area+'.json' 
-      
   # load JSON files  
   # Land affected by INDICATOR           
   with open(json_land_temperature_change_absolute_changes) as f:
@@ -60,20 +61,6 @@ def process_area(indicator_name, area, input_foulder, output_foulder):
        data_land_temperature_change_relative_changes = json.load(f)   
   with open(json_land_timeslices_relative_changes) as f:
        data_land_timeslices_relative_changes = json.load(f)                          
-
-  # Population exposed to INDICATOR
-  with open(json_pop_temperature_change_absolute_changes) as f:
-       data_pop_temperature_change_absolute_changes = json.load(f)                          
-  with open(json_pop_timeslices_absolute_changes) as f:
-       data_pop_timeslices_absolute_changes = json.load(f)      
-  with open(json_pop_temperature_change) as f:
-       data_pop_temperature_change = json.load(f)   
-  with open(json_pop_timeslices) as f:
-       data_pop_timeslices = json.load(f)                          
-  with open(json_pop_temperature_change_relative_changes) as f:
-       data_pop_temperature_change_relative_changes = json.load(f)   
-  with open(json_pop_timeslices_relative_changes) as f:
-       data_pop_timeslices_relative_changes = json.load(f)
    
   # Fill variables 
   # Land affected by INDICATOR     
@@ -145,77 +132,11 @@ def process_area(indicator_name, area, input_foulder, output_foulder):
   land_rcp60_rel_far_future_times = round(to_zero(data_land_timeslices_relative_changes['data']['rcp60']['overall']['median'][21])/100+1,3)
   land_rcp26_rel_far_future_times = round(to_zero(data_land_timeslices_relative_changes['data']['rcp26']['overall']['median'][21])/100+1,3)
 
-  rank_land_tc_rel_2c        = '(ranking-value: land-area-affected-by-river-flood-relative-changes_ISIMIP-projections_versus-temperature-change_'+area+' value: position temperature:2)' #Should show ranking with regards to relative change in land area affected under 2 degrees temperature change
-  rank_land_tc_rel_2081_2100 = '(ranking-value: land-area-affected-by-river-flood-relative-changes_ISIMIP-projections_versus-timeslices_'+area+' value: position time:2081-2100  scenario: rcp60)'
+  rank_land_tc_rel_2c        = '(ranking-value: '+land_or_pop_long+'-river-flood-relative-changes_ISIMIP-projections_versus-temperature-change_'+area+' value: position temperature:2)' #Should show ranking with regards to relative change in land area affected under 2 degrees temperature change
+  rank_land_tc_rel_2081_2100 = '(ranking-value: '+land_or_pop_long+'-river-flood-relative-changes_ISIMIP-projections_versus-timeslices_'+area+' value: position time:2081-2100  scenario: rcp60)'
 
-  # Population exposed to INDICATOR
-  pop_indicator_raw         = data_pop_timeslices['variable'] 
-  pop_indicator             = data_pop_timeslices['variable'].replace('-',' ') 
-  pop_indicator_capital     = data_pop_timeslices['variable'].replace('-',' ').capitalize()
-  
-  pop_tc_abs_ov_md_0c       = round(to_zero(data_pop_temperature_change_absolute_changes['data']['overall']['median'][0]),3) 
-  pop_tc_abs_ov_md_1c       = round(to_zero(data_pop_temperature_change_absolute_changes['data']['overall']['median'][2]),3) 
-  pop_tc_abs_ov_md_2c       = round(to_zero(data_pop_temperature_change_absolute_changes['data']['overall']['median'][4]),3) 
 
-  list_pop_tc_abs_ov_md_1c = []
-  for climate_model in data_pop_timeslices['climate_model_list']:
-      for impact_model in data_pop_timeslices['impact_model_list']:
-          list_pop_tc_abs_ov_md_1c.append(round(to_zero(data_pop_temperature_change_absolute_changes['data'][climate_model]['runs'][impact_model]['mean'][2]),3))
-  minimum_pop_tc_abs_ov_md_1c = min(list_pop_tc_abs_ov_md_1c)
-  maximum_pop_tc_abs_ov_md_1c = max(list_pop_tc_abs_ov_md_1c)
-
-  list_pop_tc_abs_ov_md_2c = []
-  for climate_model in data_pop_timeslices['climate_model_list']:
-      for impact_model in data_pop_timeslices['impact_model_list']:
-          list_pop_tc_abs_ov_md_2c.append(round(to_zero(data_pop_temperature_change_absolute_changes['data'][climate_model]['runs'][impact_model]['mean'][4]),3))
-  minimum_pop_tc_abs_ov_md_2c = min(list_pop_tc_abs_ov_md_2c)
-  maximum_pop_tc_abs_ov_md_2c = max(list_pop_tc_abs_ov_md_2c)        
-
-  pop_tc_rel_ov_md_0c       = round(to_zero(data_pop_temperature_change_relative_changes['data']['overall']['median'][0]),3) 
-  pop_tc_rel_ov_md_1c       = round(to_zero(data_pop_temperature_change_relative_changes['data']['overall']['median'][2]),3) 
-  pop_tc_rel_ov_md_2c       = round(to_zero(data_pop_temperature_change_relative_changes['data']['overall']['median'][4]),3) 
-  pop_tc_rel_ov_md_1c_times = round((to_zero(data_pop_temperature_change_relative_changes['data']['overall']['median'][2])/100+1),3)
-  if pop_tc_rel_ov_md_1c_times < 1:
-     pop_tc_rel_ov_md_1c_times_higher_or_lower = 'higher'
-  else:
-     pop_tc_rel_ov_md_1c_times_higher_or_lower = 'lower'
-  pop_tc_rel_ov_md_2c_times = round((to_zero(data_pop_temperature_change_relative_changes['data']['overall']['median'][4])/100+1),3)
-     
-  pop_tc_ov_md_0c           = round(to_zero(data_pop_temperature_change['data']['overall']['median'][0]),3) 
-  pop_tc_ov_md_1c           = round(to_zero(data_pop_temperature_change['data']['overall']['median'][2]),3) 
-  pop_tc_ov_md_2c           = round(to_zero(data_pop_temperature_change['data']['overall']['median'][4]),3) 
-  pop_substract_2_and_1     = round(pop_tc_ov_md_2c - pop_tc_ov_md_1c,3)
-
-  pop_tc_rel_ov_md_2c       = round(to_zero(data_pop_temperature_change_relative_changes['data']['overall']['median'][4]),3) 
-
-  pop_pc_abs_today          = round(to_zero(data_pop_timeslices_absolute_changes['data']['rcp60']['overall']['median'][17]),3)
-  pop_pc_abs_far_future     = round(to_zero(data_pop_timeslices_absolute_changes['data']['piControl']['overall']['median'][21]),3)
-  pop_pc_rel_far_future     = round(to_zero(data_pop_timeslices_relative_changes['data']['piControl']['overall']['median'][21]),3)
-
-  pop_rcp26_abs_far_future  = round(to_zero(data_pop_timeslices_absolute_changes['data']['rcp26']['overall']['median'][21]),3)
-  pop_rcp60_abs_far_future  = round(to_zero(data_pop_timeslices_absolute_changes['data']['rcp60']['overall']['median'][21]),3)
-  pop_rcp26_rel_far_future  = round(to_zero(data_pop_timeslices_relative_changes['data']['rcp26']['overall']['median'][21]),3)
-  pop_rcp60_rel_far_future  = round(to_zero(data_pop_timeslices_relative_changes['data']['rcp60']['overall']['median'][21]),3)
-  pop_rcp26_far_future      = round(to_zero(data_pop_timeslices['data']['rcp26']['overall']['median'][21]),3)
-  pop_rcp60_far_future      = round(to_zero(data_pop_timeslices['data']['rcp60']['overall']['median'][21]),3)
-  pop_rcp60_far_future_times = round((to_zero(data_pop_timeslices['data']['rcp60']['overall']['median'][21])/100+1),3)
-  pop_rcp26_far_future_times = round((to_zero(data_pop_timeslices['data']['rcp26']['overall']['median'][21])/100+1),3)
-  pop_rcp60_rel_far_future_times = round((to_zero(data_pop_timeslices_relative_changes['data']['rcp60']['overall']['median'][21])/100+1),3)
-  pop_rcp26_rel_far_future_times = round((to_zero(data_pop_timeslices_relative_changes['data']['rcp26']['overall']['median'][21])/100+1),3)
-
-  rank_pop_tc_rel_2c       = '(ranking-value: land-area-affected-by-river-flood-relative-changes_ISIMIP-projections_versus-temperature-change_'+area+' value: position temperature:2)'# Should show ranking with regards to relative change in population exposed under 2 degrees temperature change
-  rank_pop_tc_rel_2081_2100= '(ranking-value: population-exposed-to-river-flood-relative-changes_ISIMIP-projections_versus-timeslices_'+area+' value: position time:2081-2100 scenario: rcp60)'
-
-    # land vs pop
-    # rel vs abs vs tot
-    # time - far future
-    # time - far future
-
-    # land {pop} - tc(temp) [- rel {abs}] - ov (overall) - md (median) - 0c (temperature level)
-    # land - rcp60 (scenario) - rel {abs} - far future ( which time slice ? )
-    # minimum {maximum} - land - tc (temp) - abs (_ov_md_1c
-
-  return AreaReport(
+  kw = dict(
           indicator_short=indicator_short, name=country, code=area,
 
           climate_model_list=climate_model_list,
@@ -254,39 +175,15 @@ def process_area(indicator_name, area, input_foulder, output_foulder):
 
           rank_land_tc_rel_2c=rank_land_tc_rel_2c,
           rank_land_tc_rel_2081_2100=rank_land_tc_rel_2081_2100,
-               
-          # population affected by
-          pop_indicator=pop_indicator,
-          pop_indicator_capital=pop_indicator_capital,
-
-          pop_tc_ov_md_0c=pop_tc_ov_md_0c,
-          pop_tc_rel_ov_md_1c=pop_tc_rel_ov_md_1c,
-          pop_rcp60_rel_far_future=pop_rcp60_rel_far_future,
-          pop_substract_2_and_1=pop_substract_2_and_1,
-          pop_tc_ov_md_1c=pop_tc_ov_md_1c,
-          pop_rcp26_far_future=pop_rcp26_far_future,
-          pop_rcp60_far_future=pop_rcp60_far_future,          
-          pop_tc_ov_md_2c=pop_tc_ov_md_2c,
-          pop_tc_rel_ov_md_2c=pop_tc_rel_ov_md_2c,
-          pop_tc_abs_ov_md_2c=pop_tc_abs_ov_md_2c,
-          pop_pc_abs_far_future=pop_pc_abs_far_future,
-          pop_pc_rel_far_future=pop_pc_rel_far_future,
-          pop_indicator_raw=pop_indicator_raw,          
-          pop_rcp60_rel_far_future_times=pop_rcp60_rel_far_future_times,
-          pop_rcp60_abs_far_future=pop_rcp60_abs_far_future,
-          pop_rcp26_rel_far_future_times=pop_rcp26_rel_far_future_times,
-          pop_rcp26_abs_far_future=pop_rcp26_abs_far_future,
-          pop_rcp60_far_future_times=pop_rcp60_far_future_times,
-          pop_tc_rel_ov_md_1c_times=pop_tc_rel_ov_md_1c_times,
-          pop_tc_rel_ov_md_1c_times_higher_or_lower=pop_tc_rel_ov_md_1c_times_higher_or_lower,
-          pop_tc_rel_ov_md_2c_times=pop_tc_rel_ov_md_2c_times,
-          minimum_pop_tc_abs_ov_md_1c=minimum_pop_tc_abs_ov_md_1c,
-          maximum_pop_tc_abs_ov_md_1c=maximum_pop_tc_abs_ov_md_1c,
-          minimum_pop_tc_abs_ov_md_2c=minimum_pop_tc_abs_ov_md_2c,
-          maximum_pop_tc_abs_ov_md_2c=maximum_pop_tc_abs_ov_md_2c,
-          rank_pop_tc_rel_2c=rank_pop_tc_rel_2c,
-          rank_pop_tc_rel_2081_2100=rank_pop_tc_rel_2081_2100
   )
+
+  if land_or_pop == 'pop':
+    kwpop = {}
+    for k, v in kw.items():
+      kwpop[k.replace('land','pop')] = v
+    return kwpop
+  else:
+    return kw
 
 
 
@@ -298,7 +195,7 @@ def process_indicator(indicator_name, input_foulder, output_foulder):
   'land_indicator', 'indicator_short', 'pop_indicator', 'land_indicator_capital', 'pop_indicator_capital']
               # indicator_short=indicator_short,country=country,country_name=area,land_indicator_capital=land_indicator_capital,
 
-  world_results = process_area(indicator_name, 'world', input_foulder, output_foulder)
+  world_results = process_area(indicator_name, 'world', input_foulder)
 
   general = {k:getattr(world_results, k, 'UNDEFINED') for k in general_vars}
 
@@ -321,7 +218,7 @@ def process_indicator(indicator_name, input_foulder, output_foulder):
      if(country_name != 'oceans' and country_name != 'world'):
       #if(country_name == 'AFG'):
           print(indicator_name+ " - " +country_name)  
-          country_results = process_area(indicator_name, country_name, input_foulder, output_foulder)
+          country_results = process_area(indicator_name, country_name, input_foulder)
           general.update(vars(country_results))
 
           if (country_name != 'world'): 
