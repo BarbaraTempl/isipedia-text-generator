@@ -83,43 +83,50 @@ def _process_area(indicator_name, area, land_or_pop, input_foulder):
   nb_climate_models     = len(climate_model_list)
   nb_impact_models      = len(impact_model_list)
   
-  land_tc_abs_ov_md_0c   = round(to_zero(data_land_temperature_change_absolute_changes['data']['overall']['median'][0]),3) 
-  land_tc_abs_ov_md_1c   = round(to_zero(data_land_temperature_change_absolute_changes['data']['overall']['median'][2]),3) 
-  land_tc_abs_ov_md_2c   = round(to_zero(data_land_temperature_change_absolute_changes['data']['overall']['median'][4]),3) 
+
+  temps = data_land_temperature_change['temperature_list']
+  i0 = temps.index(0)
+  i1 = temps.index(1)
+  i2 = temps.index(2)
+  i3 = temps.index(3)
+  i4 = temps.index(4)
+
+  land_tc_abs_ov_md_0c   = round(to_zero(data_land_temperature_change_absolute_changes['data']['overall']['median'][i0]),3) 
+  land_tc_abs_ov_md_1c   = round(to_zero(data_land_temperature_change_absolute_changes['data']['overall']['median'][i1]),3) 
+  land_tc_abs_ov_md_2c   = round(to_zero(data_land_temperature_change_absolute_changes['data']['overall']['median'][i2]),3) 
 
   list_land_tc_abs_ov_md_1c = []
   for climate_model in climate_model_list:
       for impact_model in impact_model_list:
-          list_land_tc_abs_ov_md_1c.append(round(to_zero(data_land_temperature_change_absolute_changes['data'][climate_model]['runs'][impact_model]['mean'][2]),3))
+          list_land_tc_abs_ov_md_1c.append(round(to_zero(data_land_temperature_change_absolute_changes['data'][climate_model]['runs'][impact_model]['mean'][i1]),3))
   minimum_land_tc_abs_ov_md_1c = min(list_land_tc_abs_ov_md_1c)
   maximum_land_tc_abs_ov_md_1c = max(list_land_tc_abs_ov_md_1c)
 
   list_land_tc_abs_ov_md_2c = []
   for climate_model in climate_model_list:
       for impact_model in impact_model_list:
-          list_land_tc_abs_ov_md_2c.append(round(to_zero(data_land_temperature_change_absolute_changes['data'][climate_model]['runs'][impact_model]['mean'][4]),3))
+          list_land_tc_abs_ov_md_2c.append(round(to_zero(data_land_temperature_change_absolute_changes['data'][climate_model]['runs'][impact_model]['mean'][i2]),3))
   minimum_land_tc_abs_ov_md_2c = min(list_land_tc_abs_ov_md_2c)
   maximum_land_tc_abs_ov_md_2c = max(list_land_tc_abs_ov_md_2c)
 
-
-  land_tc_rel_ov_md_0c   = round(to_zero(data_land_temperature_change_relative_changes['data']['overall']['median'][0]),3) 
-  land_tc_rel_ov_md_1c   = round(to_zero(data_land_temperature_change_relative_changes['data']['overall']['median'][2]),3) 
-  land_tc_rel_ov_md_2c   = round(to_zero(data_land_temperature_change_relative_changes['data']['overall']['median'][4]),3) 
-  land_tc_rel_ov_md_1c_times = round(to_zero(data_land_temperature_change_relative_changes['data']['overall']['median'][2])/100+1,3)
+  land_tc_rel_ov_md_0c   = round(to_zero(data_land_temperature_change_relative_changes['data']['overall']['median'][i0]),3) 
+  land_tc_rel_ov_md_1c   = round(to_zero(data_land_temperature_change_relative_changes['data']['overall']['median'][i1]),3) 
+  land_tc_rel_ov_md_2c   = round(to_zero(data_land_temperature_change_relative_changes['data']['overall']['median'][i2]),3) 
+  land_tc_rel_ov_md_1c_times = round(to_zero(data_land_temperature_change_relative_changes['data']['overall']['median'][i1])/100+1,3)
   if land_tc_rel_ov_md_1c_times < 1:
      land_tc_rel_ov_md_1c_times_higher_or_lower = 'higher'
   else:
      land_tc_rel_ov_md_1c_times_higher_or_lower = 'lower'
-  land_tc_rel_ov_md_2c_times = round(to_zero(data_land_temperature_change_relative_changes['data']['overall']['median'][4])/100+1,3)
+  land_tc_rel_ov_md_2c_times = round(to_zero(data_land_temperature_change_relative_changes['data']['overall']['median'][i2])/100+1,3)
      
-  land_tc_ov_md_0c       = round(to_zero(data_land_temperature_change['data']['overall']['median'][0]),3) 
-  land_tc_ov_md_1c       = round(to_zero(data_land_temperature_change['data']['overall']['median'][2]),3) 
-  land_tc_ov_md_2c       = round(to_zero(data_land_temperature_change['data']['overall']['median'][4]),3) 
+  land_tc_ov_md_0c       = round(to_zero(data_land_temperature_change['data']['overall']['median'][i0]),3) 
+  land_tc_ov_md_1c       = round(to_zero(data_land_temperature_change['data']['overall']['median'][i1]),3) 
+  land_tc_ov_md_2c       = round(to_zero(data_land_temperature_change['data']['overall']['median'][i2]),3) 
   land_substract_2_and_1 = round((land_tc_ov_md_2c - land_tc_ov_md_1c),3)
-  land_tc_ov_md_1c_times = round((to_zero(data_land_temperature_change['data']['overall']['median'][2])/100+1),3)
+  land_tc_ov_md_1c_times = round((to_zero(data_land_temperature_change['data']['overall']['median'][i1])/100+1),3)
 
 
-  land_tc_rel_ov_md_2c   = round(to_zero(data_land_temperature_change_relative_changes['data']['overall']['median'][4]),3)   
+  land_tc_rel_ov_md_2c   = round(to_zero(data_land_temperature_change_relative_changes['data']['overall']['median'][i2]),3)   
 
   timeslices_list = [tuple(e) for e in data_land_timeslices['timeslices_list']]
   itoday = timeslices_list.index((2001, 2020))
