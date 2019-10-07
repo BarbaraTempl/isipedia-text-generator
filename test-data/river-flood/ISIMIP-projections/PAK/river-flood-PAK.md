@@ -16,7 +16,7 @@ In the key messages we report the results for the (link: glossary/median text: m
 
 * At 2 degrees Celsius of global warming, Pakistan’s land area affected by river floods is projected to increase by a factor of 9.212 compared to a world without human-made greenhouse gas emissions, to 0.071%. Likewise, Pakistan’s population exposed to river floods is projected to increase by a factor -12.871, to 0.147%.
 
-* Following the higher-emissions scenario (RCP6.0) which can entail over 3 degrees Celsius of global warming by the end of the century (2081-2100), this factor is projected to reach 1.001 for the land area affected to river flood (to 1.001%) and 1.002 for the population exposed to river floods (to 0.229%).
+* Following the higher-emissions scenario (RCP6.0) which can entail over 3 degrees Celsius of global warming by the end of the century (2081-2100), this factor is projected to reach 1.141 for the land area affected to river flood (to 0.125%) and 0.823 for the population exposed to river floods (to 0.229%).
 
 * Pakistan ranks (ranking-value: land-area-affected-by-river-flood-relative-changes_ISIMIP-projections_versus-temperature-change_PAK value: position temperature:2) with regards to its relative change in land area affected by river floods at 2 degrees Celsius of global warming in comparison to a situation without anthropogenic climate change. For the relative change in population exposed to river floods, Pakistan’s ranking is (ranking-value: population-exposed-to-river-flood-relative-changes_ISIMIP-projections_versus-temperature-change_PAK value: position temperature:2).
 

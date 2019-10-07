@@ -7,8 +7,12 @@ import json
 CONFIG_FILE_DEFAULT = os.path.join(os.path.dirname(__file__), 'config.json')
 
 class Config:
-    def __init__(self, configfile=CONFIG_FILE_DEFAULT):
-        vars(self).update(json.load(configfile))
+    def __init__(self, configfile=CONFIG_FILE_DEFAULT, **kw):
+        vars(self).update(json.load(open(configfile)))
+        for k in kw:
+            if not hasattr(self, k):
+                raise ValueError('unknown config param: '+repr(k))
+        vars(self).update(kw)
 
 # from isipedia.config import cube_data_stefan, cube_data_out, mask_file, totpopfile, gridareafile
 
@@ -18,10 +22,10 @@ class Variable:
         """ e.g. land-area-affected-by-drought-absolute-changes_ISIMIP-projections_versus-temperature-change/
         """
         self.name = name
-        vars(self).update(self._parse_name())
-        assert name == self._buildname(**vars(self))
-        self._init_axes()
         self.config = config or Config()
+        vars(self).update(self._parse_name())
+        assert name == self._buildname(**vars(self)), 'Expected: {}, Got: {}'.format(name, self._buildname(**vars(self)))
+        self._init_axes()
 
     @classmethod
     def fromparams(cls, **params):
@@ -29,7 +33,7 @@ class Variable:
 
     @staticmethod
     def _buildname(**params):
-        return "{change}-{exposure}-{indicator}_{studytype}_{axis}".format(**params).lstrip('-')
+        return "{exposure}-{indicator}-{change}_{studytype}_{axis}".format(**params).replace('-_','_')
 
 
     def _parse_name(self):
@@ -62,7 +66,7 @@ class Variable:
         params = vars(self).copy()
         axis = params.pop('axis')
         axis = 'versus-year' if axis in ['versus-timeslices', 'versus-years'] else axis
-        return (self.config.cube_data_stefan +
+        return (self.config.cube_netcdf +
                 '{variable}/future-projections/{area}/{variable}_future-projections_{area}_{axis}.nc'.format(
                     variable=self.ncvariable.replace('_','-'), axis=axis, area=area, **params))
 
@@ -71,11 +75,11 @@ class Variable:
         return self.areanc('grid-level')
 
     def jsonfile(self, area):
-        return os.path.join(self.config.cube_data_out, self.indicator, self.studytype, area, self.name+'_'+area+'.json')
+        return os.path.join(self.config.cube_json, self.indicator, self.studytype, area, self.name+'_'+area+'.json')
     
     @property
     def griddir(self):
-        return os.path.join(self.config.cube_data_out, self.indicator, self.studytype, 'world', 'maps', self.name)
+        return os.path.join(self.config.cube_json, self.indicator, self.studytype, 'world', 'maps', self.name)
 
     def gridcsv(self, point):
         return os.path.join(self.griddir, str(point)+'.csv')
@@ -166,7 +170,7 @@ class JsonData:
         self.area = area
         self.cube = cube
         self.cube_std = cube_std
-        self.name = variable.ncvariable.replace('_',' ')
+        self.name = variable.ncvariable.replace('_',' ')+'s'
         self.metadata = {}
 
         assert len(variable.climate_model_list) == cube.climate_model.size, 'climate_model mismatch'
@@ -195,7 +199,7 @@ class JsonData:
         hdr.update({
              'plot_type': self.plot_type,
               "indicator": self.variable.indicator,
-              "variable": self.variable.ncvariable.replace('-',' '),
+              "variable": self.name,
               "assessment_category": self.variable.studytype,
               "area": self.area.code,
               "region": self.area.name,
@@ -347,22 +351,23 @@ def create_json(variable, area):
     return JsonData(variable, area, cube, cube_std)
 
 
-def generate_variables(indicators, exposures, changes, axes):
-    return [Variable(exposure+'-'+indicator+(('-'+change) if change else '')+'_ISIMIP-projections_'+axis)
+def generate_variables(indicators, exposures, changes, axes, config=None):
+    return [Variable(exposure+'-'+indicator+(('-'+change) if change else '')+'_ISIMIP-projections_'+axis, config=config)
                 for indicator in indicators for exposure in exposures for change in changes for axis in axes]
 
 
-def get_areas(geom=False, mask=False, mask_file=None):
+def get_areas(geom=False, mask=False, mask_file=None, shape_file=None, code_name='ISO3'):
     import shapely.geometry as shg
     import fiona
     mask_file = mask_file or Config().mask_file
+    shape_file = shape_file or Config().shape_file
 
     with nc.Dataset(mask_file) as ds:
         codes = sorted([v[2:] for v in ds.variables.keys() if v.startswith('m_')])
 
-        countries = list(fiona.open('TM_WORLD_BORDERS_SIMPL-0.3/TM_WORLD_BORDERS_SIMPL-0.3.shp'))
-        areas = [Area(c['properties']['ISO3'], c['properties']['NAME'], geom=shg.shape(c['geometry']) if geom else None, properties=c['properties']) 
-            for c in countries if c['properties']['ISO3'] in codes]
+        countries = list(fiona.open(shape_file))
+        areas = [Area(c['properties'][code_name], c['properties']['NAME'], geom=shg.shape(c['geometry']) if geom else None, properties=c['properties']) 
+            for c in countries if c['properties'][code_name] in codes]
 
     if mask:
         with nc.Dataset(mask_file) as ds:
